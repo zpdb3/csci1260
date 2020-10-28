@@ -1,3 +1,12 @@
+// ******
+// Filename  World.java
+// Team:     Big Bois
+// Team Members: Austen Boda, Duncan Hayes, Eric Caton, 
+//               Jason Joyce, and Paul Brummitt 
+// ******
+
+// Written by Paul Brummitt
+
 
 import java.security.SecureRandom;
 import java.util.*;
