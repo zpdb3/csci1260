@@ -6,12 +6,18 @@
 // ******
 // The implementation of IInventory will be lead by Austen Boda
 
-public class IInventory // extends Armor 
+import java.util.ArrayList;
+import java.util.*;
+import java.io.*;
+
+
+public class IInventory extends Armor
 {
 
     public IInventory() //extends from armor and creates a new armor object named IInventory that possesses the                              //attribute fire protection
     {
-        super();
+        super(Armor);
+//        EquipmentManager Inventory = new.EquipmentManager;
 //        setName("IInventory");
 //        activateFireProtection();
     }
@@ -20,4 +26,42 @@ public class IInventory // extends Armor
     {
 //        super("IInventory", price, durability, armorBonus, iceProtection, fireProtection);
     }
+
+    public Pickup(Equipment equipment)
+    {
+
+    }
+
+    public getEquipmentList()
+    {
+
+    }
+
+    public getEquipmentInfo()
+    {
+
+    }
+
+    public getEquipment()
+    {
+
+    }
+
+    public dropEquipment()
+    {
+
+    }
+
+    public dropAllEquipment()
+    {
+
+    }
+
+    public addEquipment()
+    {
+
+    }
+
+
+
 }
