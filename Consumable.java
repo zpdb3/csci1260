@@ -3,7 +3,7 @@
   //   
   // ***********************  
 
-public abstract class Consumable extends Equipment		 
+public abstract class Consumable extends Equipment implements IUsable		 
 {
   String n;
   int price;
@@ -30,10 +30,8 @@ public abstract class Consumable extends Equipment
     durability = 0;
   }
 
-  public boolean use()
-  {
-    return true;
-  } 
+
+
 
 
 }
