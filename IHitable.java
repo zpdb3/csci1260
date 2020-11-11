@@ -4,20 +4,56 @@
 // Team Members: Austen Boda, Duncan Hayes, Eric Caton,
 //                               Jason Joyce, and Paul Brummitt
 // ******
-// The implementation of IHitable will be lead by Austen Boda
+// The implementation of IHitable will be lead by Jason Joyce
 
-public class IHitable // extends Armor 
+
+
+public interface IHitable
 {
 
-    public IHitable() //extends from armor and creates a new armor object named IHitable that possesses the                              //attribute fire protection
-    {
-        super();
-//        setName("IHitable");
-//        activateFireProtection();
-    }
+  // ***********************
+  //   getMaxHealth()
+  //   returns the current value of maxHealth
+  // ***********************  
+  
+  int getMaxHealth();
 
-    public IHitable(int price, double durability, int armorBonus, boolean iceProtection, boolean fireProtection) //extends from armor to set the default attributes of a IHitable obhect
-    {
-//        super("IHitable", price, durability, armorBonus, iceProtection, fireProtection);
-    }
+  // ***********************
+  //   getCurrentHealth()
+  //   returns the current value of currentHealth
+  // ***********************  
+
+  int getCurrentHealth();
+
+
+  // ***********************
+  //   isHitableDestroyed()
+  //   returns true if current value <= 0
+  //   otherwise, returns false
+  // ***********************  
+
+  boolean isHitableDestroyed();
+
+
+  // ***********************
+  //   takeDamage()
+  //   subtracts the provided damage from
+  //   currentHealth and returns the result
+  // ***********************  
+
+  int takeDamage(int dmg, int fire, int ice);
+
+
+  // ***********************
+  //   heal()
+  //   adds the passed value to currentHealth
+  //   up to a maximum of maxHealth
+  //   returns the amount of health that was added
+  // ***********************  
+
+  int heal(int amt);
+   
+
+
 }
+

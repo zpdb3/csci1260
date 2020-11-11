@@ -7,13 +7,13 @@
 
 // Written by Paul Brummitt
 
-
 import java.security.SecureRandom;
 import java.util.*;
 
 
 public class World
 {
+  // see p. 475 in text for help with ArrayList objects
   public ArrayList<Chest>  chests;	//Declare an array of chests
   public ArrayList<Barrel> barrels;	//Declare an array of barrels
   public ArrayList<Person> people;	//Declare an array of people
@@ -21,46 +21,41 @@ public class World
 
   public World()
   {
-    // Enter code here
-    chests  = new ArrayList<Chest>();	//Instantiate the array
-    barrels = new ArrayList<Barrel>();	//Instantiate the array
-    people  = new ArrayList<Person>();	//Instantiate the array
-    	
+
+    chests  = new ArrayList<Chest>();
+    barrels = new ArrayList<Barrel>();
+    people  = new ArrayList<Person>();
+
+    // The following statements begin filling the arrays    	
     makeChest();			 					
     makeChest();
     makeChest();
     makeBarrel();
     makeBarrel();
     makeBarrel();
-    makeGoblin();			//???Ask about instanceOf
+    makeGoblin();
     makeGoblin();
     makeGoblin();
     makeHuman();
-    
-//    Goblin goblinName = makeGoblin();
-//    people.add = makeHuman();    	
-    
-    
+
+
   }
-  
+
   // ***********************
   //   makeChest Method
   // ***********************  
   public void makeChest() {
     System.out.println("You have called makeChest");	// removeMe
-    chests.add(new Chest());		//???I am adding these to the World
-					//   but not sure about the "Named" part
-    
-	
-
-  }
+    chests.add(new Chest());		//adds a chest to the array of chests
+					   
+  }  
 
 // ***********************
   //   makeBarrel Method
   // ***********************  
   public void makeBarrel() {
     System.out.println("You have called makeBarrel");	// removeMe    
-    barrels.add(new Barrel());
+    barrels.add(new Barrel());		//adds a barrel to the array of barrels
   }
 
   // ***********************
@@ -68,7 +63,7 @@ public class World
   // ***********************  
   public void makeHuman() {
     System.out.println("You have called makeHuman");	// removeMe
-    people.add(new Person());
+  people.add(new Human()); 		//adds a human to the array of people
 
   }
 
@@ -78,12 +73,46 @@ public class World
   public void makeGoblin() {
     System.out.println("You have called makeGoblin");	// removeMe
 
-    people.add(new Goblin());
+    people.add(new Goblin());		//adds a goblin to the array of people
+  }
+
+  // ***********************
+  //   listChests Method			
+  // ***********************  
+  public String listChests() {
+    System.out.println("You have called listChests.");
+    int iterator = 0;
+    String returnString = "Chests: \n";
+    
+    Chest chest1 = new Chest();
+    
+    chests.add(chest1);
+
+    System.out.println("The ArrayList has " +
+                        chests.size() + 
+                       " objects stored in it.");
+     
+
+    for (Chest name : chests)
+      System.out.println(name);
+
+    System.out.println(chests);
+
+
+    for (int index = 0; index < chests.size(); index++)
+    {
+      System.out.println("Index: " + index + " Name: " +
+                          chests.get(index));
+    }    
+    return returnString;
 
   }
+
+
   // ***********************
-  //   listChests Method				//???Example of adding item to chest
+  //   listChests Method-old / not used			
   // ***********************  
+/*
   public String listChests() {
       //Refer to EquipmentManager getEquipmentList()
       //and getEquipmentListDetails()
@@ -102,7 +131,7 @@ public class World
     return returnString;
 
   }
-
+*/
   // ***********************
   //   listBarrels Method
   // ***********************  
@@ -176,7 +205,6 @@ public class World
     return "Update Return Value Here";
   }
 
-
   // ***********************
   //   attack Method				// ??? What is the range of damage that can be done
   // ***********************  
@@ -185,7 +213,6 @@ public class World
     System.out.println("You have called attack");	// removeMe
     return "Update Return Value Here";
   }
-
 
   // ***********************
   //   transferEquipment
@@ -260,6 +287,7 @@ public class World
     return true;
 
   }
+
 
 
 
