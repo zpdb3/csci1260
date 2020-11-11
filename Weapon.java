@@ -81,13 +81,25 @@ public class Weapon extends Equipment
   public String toString() {
     return ("{name: \"" + super.getName() + "\", price: " + super.getPrice() + ", durability: \"" +
             super.getDurability() + "\", normal: " + this.getNormalDamage() + ", ice: " + this.getIceDamage() +
-            ", fire: " + this.getFireDamage() + ", weaponHandedness: \"" + this.getWeaponHandedness() + "\"}" );
+            ", fire: " + this.getFire                                                                                                                                                   Damage() + ", weaponHandedness: \"" + this.getWeaponHandedness() + "\"}" );
+  }
+  
+  public int attack(IHitable hitable){
+	hitable.takeDamage(this.getNormalDamage, this.getFireDamage, this.getIceDamage);
+  }
+  
+  public boolean use(Person person){
+	attack(person);
+	if(isHitableDestroyed(person) == true)
+	{
+		return true;
+	}
   }
 
 
 
 
-
+ 
 
 
 }
