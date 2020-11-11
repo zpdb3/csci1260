@@ -14,8 +14,8 @@ public abstract class Person implements IHitable, IInventory{
 
     public Person(String name) {
         this.name = name;
-        this.maxHealth = super.getMaxHealth();
-        this.currentHealth = super.getCurrentHealth();
+        this.maxHealth = 50;
+        this.currentHealth = 40;
     }
 
     public String saySomething() {
@@ -33,7 +33,7 @@ public abstract class Person implements IHitable, IInventory{
                 equipSuccess = true;
             }
             else {
-                super.pickup(helmet);
+                this.pickup(helmet);
                 helmet = (Helmet)e;
                 equipSuccess = true;
             }
@@ -44,7 +44,7 @@ public abstract class Person implements IHitable, IInventory{
                 equipSuccess = true;
             }
             else {
-                super.pickup(plackart);
+                this.pickup(plackart);
                 plackart = (Plackart)e;
                 equipSuccess = true;
             }
@@ -55,7 +55,7 @@ public abstract class Person implements IHitable, IInventory{
                 equipSuccess = true;
             }
             else {
-                super.pickup(weapon);
+                this.pickup(weapon);
                 weapon = (Weapon)e;
                 equipSuccess = true;
             }
@@ -108,7 +108,7 @@ public abstract class Person implements IHitable, IInventory{
     }
 
     public boolean isHitableDestroyed() {
-
+        return this.currentHealth <= 0;
     }
 
     public int takeDamage(int dmg, int fire, int ice) {
@@ -148,7 +148,10 @@ public abstract class Person implements IHitable, IInventory{
     }
 
     public int heal(int amt) {
-
+        int amtHealed;
+        amtHealed = this.currentHealth + amt > this.maxHealth ? this.maxHealth - this.currentHealth : amt;
+        currentHealth += amtHealed;
+        return amtHealed;
     }
 
     /*
@@ -156,42 +159,46 @@ public abstract class Person implements IHitable, IInventory{
      */
 
     public void pickup(Equipment e) {
-
+        this.inventory.addEquipment(e);
     }
 
     public void transferAllEquipmentFrom(IInventory other) {
-
+        int count = other.countEquipment();
+        for(int iterate = 0 ; iterate < count ; iterate++){
+            this.inventory.pickup(other.getEquipment[iterate]);
+        }
+        other.dropAllEquipment();
     }
 
     public int countArmor() {
-
+        return this.inventory.countArmor();
     }
 
     public int countWeapon() {
-
+        return this.inventory.countWeapon();
     }
 
     public int countConsumables() {
-
+        return this.inventory.countConsumables();
     }
 
     public String getEquipmentList() {
-
+        return this.inventory.getEquipmentList();
     }
 
     public String getEquipmentInfo(int index) {
-
+        return this.inventory.getEquipmentDetails(index);
     }
 
     public Equipment getEquipment(int index) {
-
+        return this.inventory.getEquipment(index);
     }
 
     public void dropEquipment(int index) {
-
+        this.inventory.removeEquipment(index);
     }
 
     public void dropAllEquipment() {
-
+        this.inventory.clearAll();
     }
 }
