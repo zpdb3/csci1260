@@ -209,7 +209,9 @@ public class World
   //   attack Method				// ??? What is the range of damage that can be done
   // ***********************  
   public String attack(IHitable target) {
-  
+  // Look at the weapon the person has
+  // i.e. player.weapon.attack(target) and it will return the int value of damage done to target 
+  // pass to Weapon.attack the target
     System.out.println("You have called attack");	// removeMe
     return "Update Return Value Here";
   }

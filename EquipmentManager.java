@@ -10,7 +10,7 @@ import java.security.SecureRandom;
 import java.util.*;
 import java.util.Random;
 // A class that inventories equipment
-public class EquipmentManager implements Inventory
+public class EquipmentManager implements IInventory
 {
   private ArrayList<Equipment> equipment;
 
@@ -27,46 +27,46 @@ public class EquipmentManager implements Inventory
   }
   
   // This method uses the countArmor and countWeapon method to determine an equipment total.
-  @Override
+//  @Override
   public int countEquipment() 
   {
     return equipment.size();
   }
-  @Override
+//  @Override
   public int countArmor() 
   {
     int armorCount =0;
 	for(int i=0; i<equipment.size(); i++)
 	{
-		if(equipment(i)== typeOF(Armor))
+		if(equipment[i] instanceof Armor)
 		{
 			armorCount++;
 		}
 	}
 	return armorCount;
   }
-  @Override
+//  @Override
   public int countWeapon()
   {
     int weaponCount =0;
 	for(int i=0; i<equipment.size(); i++)
 	{
-		if(equipment(i)== typeOf(Weapon))
+		if(equipment[i] instanceof Weapon)
 		{
 			weaponCount++;
 		}
 	}
 	return weaponCount;
   }
-  @Override
+//  @Override
   public int countConsumables()
   {
-	int consumbaleCount =0;
+	int consumableCount =0;
 	for(int i=0; i<equipment.size(); i++)
 	{
-		if(equipment(i)== typeOf(Consumable))
+		if(equipment[i] instanceof Consumable)
 		{
-			consumbaleCount++;
+			consumableCount++;
 		}
 	}
 	return consumableCount; 
@@ -76,11 +76,11 @@ public class EquipmentManager implements Inventory
 	equipment.remove(index);
   }
   
-  @Override
+//  @Override
   public void dropEquipment(int index){
 	removeEquipment(index);
   }
-  @Override
+//  @Override
   public void dropAllEquipment(){
 	equipment.clearAll();
   }
@@ -91,7 +91,7 @@ public class EquipmentManager implements Inventory
   
    //GET EQUIPMENT METHODS
 	
-  @Override
+//  @Override
   public String getEquipmentList() {							
 
 	for(int i =0; i<equipment.size(); i++){
@@ -102,37 +102,40 @@ public class EquipmentManager implements Inventory
   public String getEquipmentListDetails() {
   
 	for(int i =0; i<equipment.size(); i++){
-		return equipment(i).toString();
-  }
+   		return equipment(i).toString();
+        } 
+ }
   
-  
+
   public String getEquipmentDetails(int index) 
   {
-    return equipment(index).toString;
+    return equipment[index].toString();
   }
     
-  @Override
+//  @Override
   public String getEquipmentInfo(int index){
 	  return getEquipmentDetails(index);
   }
 
-  @Override
+//  @Override
   public Equipment getEquipment(int index){
 	return equipment(index);
   }
   
-  @Override
+//  @Override
   public void addEquipment(Equipment e)
   {
-	equipment.add(e);
+	this.equipment.add(e);
   }
   
-  @Override
-  public void Pickup(Equipment e){
-	equipment.addEquipment(e);
+//  @Override
+  public void pickup(Equipment e){
+	this.equipment.addEquipment(e);
   }
   
-  @Override
+//  @Override
+
+// ??? Needs to use a loop 
   public void transferAllEquipmentFrom(IInventory other){
 	
 	this.pickup(getEquipmentList(other));
@@ -148,19 +151,19 @@ public class EquipmentManager implements Inventory
 	storage = counter.nextInt(4);
 	if(storage == 0)
 	{
-		Sword sword = new Sword;
+		Sword sword = new Sword();
 	}
 	if(storage == 1)
 	{
-		Spear spear = new Spear;
+		Spear spear = new Spear();
 	}
 	if(storage == 2)
 	{
-		LongBow longBow = new LongBow;
+		LongBow longBow = new LongBow();
 	}
 	if(storage == 3)
 	{
-		ThrowingAxe throwingAxe = new ThrowingAxe;
+		ThrowingAxe throwingAxe = new ThrowingAxe();
 	}
   }
   
@@ -171,17 +174,17 @@ public class EquipmentManager implements Inventory
 	storage = counter.nextInt(2);
 	if(storage == 0)
 	{
-		Helmet helmet = new Helmet;
+		Helmet helmet = new Helmet();
 	}
 	if(storage == 1)
 	{
-		Plackart plackart = new Plackart;
+		Plackart plackart = new Plackart();
 	}
   } 
   
   public static void makeRandomConsumable()
   {
-	HealthKit healthKit = new HealthKit;
+	HealthKit healthKit = new HealthKit();
   }
   
 
