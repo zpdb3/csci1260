@@ -11,12 +11,13 @@ public abstract class Person implements IHitable, IInventory{
     private EquipmentManager inventory;
     private int maxHealth;
     private int currentHealth;
+    private Equipment e;
 
     public Person(String name) {
         this.name = name;
-        this.maxHealth = super.getMaxHealth();
-        this.currentHealth = super.getCurrentHealth();
-    }
+        maxHealth = getMaxHealth(); //removed this.MaxHealth and super.GetMaxHealth ???
+        currentHealth = getCurrentHealth(); //removed this.currentHealth & super.get ???
+     }
 
     public String saySomething() {
 
@@ -33,7 +34,7 @@ public abstract class Person implements IHitable, IInventory{
                 equipSuccess = true;
             }
             else {
-                super.pickup(helmet);
+                pickup(helmet);       // ??? removed super.
                 helmet = (Helmet)e;
                 equipSuccess = true;
             }
@@ -44,7 +45,7 @@ public abstract class Person implements IHitable, IInventory{
                 equipSuccess = true;
             }
             else {
-                super.pickup(plackart);
+                pickup(plackart);       ///??? removed super.
                 plackart = (Plackart)e;
                 equipSuccess = true;
             }
@@ -55,7 +56,7 @@ public abstract class Person implements IHitable, IInventory{
                 equipSuccess = true;
             }
             else {
-                super.pickup(weapon);
+                pickup(weapon);		//???remove super.pickup
                 weapon = (Weapon)e;
                 equipSuccess = true;
             }
@@ -63,7 +64,7 @@ public abstract class Person implements IHitable, IInventory{
 
         return equipSuccess;
     }
-
+/* ---- ??? add this back
     public int attack(IHitable target) {
         int damageDone;
         if(this.weapon == null)
@@ -72,7 +73,7 @@ public abstract class Person implements IHitable, IInventory{
             damageDone = weapon.attack();
         return damageDone;
     }
-
+*/
     public String getName() {
         return this.name;
     }
@@ -108,7 +109,7 @@ public abstract class Person implements IHitable, IInventory{
     }
 
     public boolean isHitableDestroyed() {
-
+      return false;				//??? change return
     }
 
     public int takeDamage(int dmg, int fire, int ice) {
@@ -148,7 +149,7 @@ public abstract class Person implements IHitable, IInventory{
     }
 
     public int heal(int amt) {
-
+	  return 0; //??? change return
     }
 
     /*
@@ -164,27 +165,38 @@ public abstract class Person implements IHitable, IInventory{
     }
 
     public int countArmor() {
-
+      return 0; //??? change return
     }
 
-    public int countWeapon() {
+  // ***********************
+  //   countEquipment()
+  //   counts equipment on hand
+  // ***********************  
+  
+    public int countEquipment()  {
+      return 0;
+    }
 
+
+    public int countWeapon() {
+  return 0; //??? change return
     }
 
     public int countConsumables() {
-
+  return 0; //??? change return
     }
 
     public String getEquipmentList() {
-
+      return ""; //??? change return
     }
 
     public String getEquipmentInfo(int index) {
-
+      return ""; //??? change return
     }
 
-    public Equipment getEquipment(int index) {
 
+    public Equipment getEquipment(int index) {
+      return e;  
     }
 
     public void dropEquipment(int index) {

@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 
-public class Human extends Person {
+public class Human extends Person { //added abs
+
+    Equipment eq = new Equipment();
 
     public Human() {
         this("Villager");
@@ -15,4 +17,15 @@ public class Human extends Person {
                 "tart threw a sword at you!");
         super.setThingsToSay(villagerWordSalad);
     }
+
+  // ***********************
+  //   countEquipment()
+  //   counts equipment on hand
+  // ***********************  
+  
+
+
+
+
+
 }

@@ -6,18 +6,14 @@
 // ******
 // The implementation of Chest will be lead by Austen Boda
 
-public class Chest // extends Armor 
+public class Chest 
 {
 
-    public Chest() //extends from armor and creates a new armor object named Chest that possesses the                              //attribute fire protection
+    public Chest() //creates a new armor object named Chest that possesses the                                              //attribute fire protection
     {
-        super();
-//        setName("Chest");
+//        super();
+        String name = "Chest";
 //        activateFireProtection();
     }
 
-    public Chest(int price, double durability, int armorBonus, boolean iceProtection, boolean fireProtection) //extends from armor to set the default attributes of a Chest obhect
-    {
-//        super("Chest", price, durability, armorBonus, iceProtection, fireProtection);
-    }
 }
