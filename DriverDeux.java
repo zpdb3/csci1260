@@ -438,6 +438,12 @@ class DriverDeux {
         }//end of while loop
     }//end of Main
 
+
+
+
+    /*
+     * Reusable methods for main.
+     */
     public static void clearScreen()  //method to clear the screen not working **ON MAC**
     {
         System.out.print("\033[H\033[2J");
