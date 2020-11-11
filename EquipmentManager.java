@@ -38,7 +38,7 @@ public class EquipmentManager implements Inventory
     int armorCount =0;
 	for(int i=0; i<equipment.size(); i++)
 	{
-		if(equipment(i)== typeOF(Armor))
+		if(equipment(i)instanceof(Armor))
 		{
 			armorCount++;
 		}
@@ -51,7 +51,7 @@ public class EquipmentManager implements Inventory
     int weaponCount =0;
 	for(int i=0; i<equipment.size(); i++)
 	{
-		if(equipment(i)== typeOf(Weapon))
+		if(equipment(i)instanceof(Weapon))
 		{
 			weaponCount++;
 		}
@@ -64,7 +64,7 @@ public class EquipmentManager implements Inventory
 	int consumbaleCount =0;
 	for(int i=0; i<equipment.size(); i++)
 	{
-		if(equipment(i)== typeOf(Consumable))
+		if(equipment(i)instanceof(Consumable))
 		{
 			consumbaleCount++;
 		}
