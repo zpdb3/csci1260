@@ -93,18 +93,19 @@ public class EquipmentManager implements IInventory
 	
 //  @Override
   public String getEquipmentList() {	        // ??? Change needed						
-	String list;					// for each loop and return outside the loop
+	String list = "";					// for each loop and return outside the loop
 	for(Equipment e: equipment){
-		list += e
+		list += "\n" + e;
 	}
 	return list;
   }
   
   public String getEquipmentListDetails() { 
-  
-	for(int i =0; i<equipment.size(); i++){
-   		return equipment[i].toString();
+  	String list = "";
+	for(Equipment e: equipment){
+   		list += "\n" + e.toString();
         } 
+	return list;
  }
   
 
