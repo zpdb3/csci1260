@@ -182,6 +182,10 @@ public abstract class Person implements IHitable, IInventory{
         return this.inventory.countConsumables();
     }
 
+    public int countEquipment() {
+        return countArmor() + countWeapon() + countConsumables();
+    }
+
     public String getEquipmentList() {
         return this.inventory.getEquipmentList();
     }
