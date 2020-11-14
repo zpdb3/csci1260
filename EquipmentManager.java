@@ -131,8 +131,8 @@ public class EquipmentManager implements IInventory
   }
   
 //  @Override
-  public void pickup(Equipment e){
-	addEquipment(e);
+  public void pickup(Equipment equipment){
+	addEquipment(equipment);
   }
   
 //  @Override
@@ -140,8 +140,10 @@ public class EquipmentManager implements IInventory
 // ??? Needs to use a loop 
   public void transferAllEquipmentFrom(IInventory other){
 	
-	this.pickup(getEquipmentList(other));
-	dropAllEquipment(other);
+	for(int i=0; i<other.size(); i++){
+		pickup(other[i]);
+	}
+	other.dropAllEquipment();
 	
   }
   
