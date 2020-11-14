@@ -48,12 +48,14 @@ public class World
     Chest newChest = new Chest();
     System.out.println("You have called makeChest");	// removeMe
 
-    newChest.addEquipment((Equipment) EquipmentManager.makeRandomWeapon());	// +++ adds a random weapon
-    EquipmentManager.makeRandomArmor();		// +++ adds a random armor
-    EquipmentManager.makeRandomConsumable();	// +++ adds a random consumable
+//    Chest[0].addEquipment((Equipment) EquipmentManager.makeRandomWeapon());	// +++ adds a random weapon
+//    EquipmentManager.makeRandomArmor();		// +++ adds a random armor
+//    EquipmentManager.makeRandomConsumable();	// +++ adds a random consumable
 
     chests.add(newChest);		//adds a chest to the array of chests
-					   
+//    chests(0).addEquipment(EquipmentManager.makeRandomWeapon());
+      System.out.println("Index: " + 0 + " Name: " +
+                          chests.get(0));				   
   }  
 
 // ***********************
@@ -213,21 +215,22 @@ public class World
     
 	Random counter = new Random();
 	int storage = 0;
+	String returnValue="";
 	storage = counter.nextInt(3);
 	if(storage == 0)
 	{						// ??? may need if to determine villager vs goblin
-		return person.villagerWordSalad(0);
+		return "I've got something to say";     // ??? update this
 	}
 	if(storage == 1)
 	{
-		return person.villagerWordSalad(1);
+		return "I've got something to say too";     // ??? update this
 	}
 	if(storage == 2)
 	{
-		return person.villagerWordSalad(2);
+		return "I've got something to say three";     // ??? update this
 	}
 
-    
+	return returnValue;    
   }
 
   // ***********************
@@ -238,8 +241,8 @@ public class World
   // i.e. player.weapon.attack(target) and it will return the int value of damage done to target 
   // pass to Weapon.attack the target
   // take damage value returned value returned and then call the take damage method
- 
-    String returnValue = player.weapon.attack(target);
+     int returnValue = 0;			// ??? remove this line and fix the line below
+//    int returnValue = player.Weapon.attack(target);
     return returnValue;
   }
 
@@ -311,7 +314,7 @@ public class World
   //   useEquipment
   // ***********************  
   public boolean useEquipment(Equipment eqmt, Person target) {
-    eqmt.use(target);
+//    this.use(target);						// ??? Fix this line
     return true;
 
   }
