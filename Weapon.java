@@ -85,8 +85,8 @@ public class Weapon extends Equipment
   }
   
   public int attack(IHitable hitable){
-	hitable.takeDamage(getNormalDamage(), getFireDamage(), getIceDamage());
-        return 0; // ??? update this return statement
+	return hitable.takeDamage(getNormalDamage(), getFireDamage(), getIceDamage());
+        
   }
   
 /* -------------------------------------- ??? add back

@@ -69,7 +69,7 @@ public abstract class Person implements IHitable, IInventory{
         if(this.weapon == null)
             damageDone = 0;
         else
-            damageDone = weapon.attack();
+            damageDone = weapon.attack(target);
         return damageDone;
     }
 
@@ -165,7 +165,7 @@ public abstract class Person implements IHitable, IInventory{
     public void transferAllEquipmentFrom(IInventory other) {
         int count = other.countEquipment();
         for(int iterate = 0 ; iterate < count ; iterate++){
-            this.inventory.pickup(other.getEquipment[iterate]);
+            this.inventory.pickup(other.getEquipment(iterate));
         }
         other.dropAllEquipment();
     }
@@ -180,6 +180,10 @@ public abstract class Person implements IHitable, IInventory{
 
     public int countConsumables() {
         return this.inventory.countConsumables();
+    }
+
+    public int countEquipment() {
+        return countArmor() + countWeapon() + countConsumables();
     }
 
     public String getEquipmentList() {

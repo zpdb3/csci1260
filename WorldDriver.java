@@ -247,7 +247,7 @@ class WorldDriver
                         case "PLACKART":
 
                             Plackart p = new Plackart();
-                            equipMan.addPlackart(p);
+//                            equipMan.addPlackart(p);
                             errorType = "Plackart added.";
                             break;
 
@@ -255,15 +255,15 @@ class WorldDriver
                         case "HELMET":
 
                             Helmet h = new Helmet();
-                            equipMan.addHelmet(h);
+//                            equipMan.addHelmet(h);
                             errorType = "Helmet added.";
                             break;
 
                         case "spear":
                         case "SPEAR":
 
-                            Spear sp = new Spear();
-                            equipMan.addSpear(sp);
+//                            Spear sp = new Spear();
+//                           equipMan.addSpear(sp);
                             errorType = "Spear added.";
                             break;
 
@@ -271,7 +271,7 @@ class WorldDriver
                         case "SWORD":
 
                             Sword sw = new Sword();
-                            equipMan.addSword(sw);
+//                            equipMan.addSword(sw);
                             errorType = "Sword added.";
                             break;
 
@@ -280,7 +280,7 @@ class WorldDriver
                         case "LONGBOW":
 
                             LongBow lb = new LongBow();
-                            equipMan.addLongBow(lb);
+//                            equipMan.addLongBow(lb);
                             errorType = "Long Bow added.";
                             break;
 
@@ -289,7 +289,7 @@ class WorldDriver
                         case "THROWINGAXE":
 
                             ThrowingAxe ta = new ThrowingAxe();
-                            equipMan.addThrowingAxe(ta);
+//                            equipMan.addThrowingAxe(ta);
                             break;
 
                         default:
@@ -319,7 +319,7 @@ class WorldDriver
                             boolean ice = userCommandArray[5].equalsIgnoreCase("true") ? true : false;
                             boolean fire = userCommandArray[6].equalsIgnoreCase("true") ? true : false;
                             Plackart plk = new Plackart(price, durability, armorBonus, ice, fire);
-                            equipMan.addPlackart(plk);
+//                            equipMan.addPlackart(plk);
                             break;
 
                         case "helmet":
@@ -331,7 +331,7 @@ class WorldDriver
                             ice = userCommandArray[5].equalsIgnoreCase("true") ? true : false;
                             fire = userCommandArray[6].equalsIgnoreCase("true") ? true : false;
                             Helmet hlm = new Helmet(price, durability, armorBonus, ice, fire);
-                            equipMan.addHelmet(hlm);
+//                            equipMan.addHelmet(hlm);
                             break;
 
                         case "spear":
@@ -350,7 +350,7 @@ class WorldDriver
                             else
                                 weaponHand = WeaponHandedness.Versatile;
                             Spear spr = new Spear(normalDamage, iceDamage, fireDamage, weaponHand, price, durability);
-                            equipMan.addSpear(spr);
+//                            equipMan.addSpear(spr);
                             break;
 
                         case "sword":
@@ -368,7 +368,7 @@ class WorldDriver
                             else
                                 weaponHand = WeaponHandedness.Versatile;
                             Sword srd = new Sword(normalDamage, iceDamage, fireDamage, weaponHand, price, durability);
-                            equipMan.addSword(srd);
+//                            equipMan.addSword(srd);
                             break;
 
                         case "longBow":
@@ -390,7 +390,7 @@ class WorldDriver
                             int currentAmmo = Integer.valueOf(userCommandArray[9]);
                             int maxAmmo = Integer.valueOf(userCommandArray[10]);
                             LongBow lnb = new LongBow(normalDamage, iceDamage, fireDamage, weaponHand, price, durability, range, maxAmmo);
-                            equipMan.addLongBow(lnb);
+//                            equipMan.addLongBow(lnb);
                             break;
 
                         case "throwingAxe":
@@ -412,7 +412,7 @@ class WorldDriver
                             currentAmmo = Integer.valueOf(userCommandArray[9]);
                             maxAmmo = Integer.valueOf(userCommandArray[10]);
                             ThrowingAxe tra = new ThrowingAxe(normalDamage, iceDamage, fireDamage, weaponHand, price, durability, range, maxAmmo);
-                            equipMan.addThrowingAxe(tra);
+//                            equipMan.addThrowingAxe(tra);
                             break;
 
                         default:
@@ -430,7 +430,7 @@ class WorldDriver
 
                     int rmvIndex = Integer.parseInt(userCommandArray[2]);  //get the index from the array and convert to int.
 
-                    equipMan.removeEquipment(userCommandArray[1], rmvIndex);
+//                    equipMan.removeEquipment(userCommandArray[1], rmvIndex);
                     System.out.println("Item Removed.");
                     pause();
                     break;
@@ -444,7 +444,7 @@ class WorldDriver
 
                     int printIndex = Integer.parseInt(userCommandArray[2]);  //get the index from the array and convert to int.
 
-                    System.out.println(equipMan.getEquipmentDetails(equipType, printIndex));
+//                    System.out.println(equipMan.getEquipmentDetails(equipType, printIndex));
                     pause();
                     break;
 
