@@ -30,6 +30,19 @@ public abstract class Consumable extends Equipment implements IUsable
     durability = 0;
   }
 
+// ***********************
+  //   use() Method
+  //   overrides the IUsable
+  // ***********************  
+
+
+  public boolean use()
+  {
+    return true;
+  }
+
+
+
 
 
 

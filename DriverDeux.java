@@ -184,29 +184,29 @@ class DriverDeux {
 
                                 switch(secObjOrPer){
                                     case "barrel":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.barrels[specificChoice],
-                                                currentStateOfThings.barrls[secSpecificChoice]);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.barrels.get(specificChoice),
+                                                (IInventory) currentStateOfThings.barrels.get(secSpecificChoice));
                                         outPutString = "All items transferred from one barrel to the other.";
                                         break;
                                     case "chest":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.barrels[specificChoice],
-                                                currentStateOfThings.chests[secSpecificChoice]);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.barrels.get(specificChoice),
+                                                (IInventory) currentStateOfThings.chests.get(secSpecificChoice));
                                         outPutString = "All items transferred from the barrel to the chest.";
                                         break;
                                     case "villager":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.barrels[specificChoice],
-                                                currentStateOfThings.people[secSpecificChoice]);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.barrels.get(specificChoice),
+                                                (IInventory) currentStateOfThings.people.get(secSpecificChoice));
                                         outPutString = "The villager protested a bit meekly as you added the barrel full\n" +
                                                 "of items to his pockets, what are you even doing with your life?";
                                         break;
                                     case "goblin":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.barrels[specificChoice],
-                                                currentStateOfThings.people[secSpecificChoice]);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.barrels.get(specificChoice),
+                                                (IInventory) currentStateOfThings.people.get(secSpecificChoice));
                                         outPutString = "The goblin does not look amused as you dump a barrel worth of\n" +
                                                        "items onto him";
                                     case "me":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.barrels[specificChoice],
-                                                currentStateOfThings.player);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.barrels.get(specificChoice),
+                                                (IInventory) currentStateOfThings.player);
                                         outPutString = "Ohhh yeah all the loot baby, nothing left in that barrel now!";
                                         break;
                                     default:
@@ -214,7 +214,7 @@ class DriverDeux {
                                 }//end of barrel transfer switch
                             }//end of transfer else if
                             else if(primaryCmnd.equalsIgnoreCase("attack")){
-                                outPutString = "You attack the barrel doing " + currentStateOfThings.attack(currentStateOfThings.barrels[specificChoice]) +
+                                outPutString = "You attack the barrel doing " + currentStateOfThings.attack((IHitable) currentStateOfThings.barrels.get(specificChoice)) +
                                                " damage.";
                             }
                             else if(primaryCmnd.equalsIgnoreCase("speak")){
@@ -245,30 +245,30 @@ class DriverDeux {
 
                                 switch(secObjOrPer){
                                     case "barrel":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.chests[specificChoice],
-                                                currentStateOfThings.barrls[secSpecificChoice]);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.chests.get(specificChoice),
+                                                (IInventory) currentStateOfThings.barrels.get(secSpecificChoice));
                                         outPutString = "All items transferred from the chest to the barrel.";
                                         break;
                                     case "chest":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.chests[specificChoice],
-                                                currentStateOfThings.chests[secSpecificChoice]);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.chests.get(specificChoice),
+                                                (IInventory) currentStateOfThings.chests.get(secSpecificChoice));
                                         outPutString = "All items transferred from one chest to the other.";
                                         break;
                                     case "villager":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.chests[specificChoice],
-                                                currentStateOfThings.people[secSpecificChoice]);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.chests.get(specificChoice),
+                                                (IInventory) currentStateOfThings.people.get(secSpecificChoice));
                                         outPutString = "The villager protested a bit meekly as you added the chest full\n" +
                                                 "of items to his pockets, what are you even doing with your life?";
                                         break;
                                     case "goblin":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.chests[specificChoice],
-                                                currentStateOfThings.people[secSpecificChoice]);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.chests.get(specificChoice),
+                                                currentStateOfThings.people.get(secSpecificChoice));
                                         outPutString = "The goblin does not look amused as you dump a chest worth of items\n" +
                                                        "onto him.";
                                         break;
                                     case "me":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.chests[specificChoice],
-                                                currentStateOfThings.player);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.chests.get(specificChoice),
+                                                (IInventory) currentStateOfThings.player);
                                         outPutString = "Ohhh yeah all the loot baby, nothing left in that chest now!\n" +
                                                        "Also wasn't a Mimic, score!";
                                         break;
@@ -277,7 +277,7 @@ class DriverDeux {
                                 }//end of barrel transfer switch
                             }//end of transfer else if
                             else if(primaryCmnd.equalsIgnoreCase("attack")){
-                                outPutString = "You attack the chest doing " + currentStateOfThings.attack(currentStateOfThings.chests[specificChoice]) +
+                                outPutString = "You attack the chest doing " + currentStateOfThings.attack((IHitable) currentStateOfThings.chests.get(specificChoice)) +
                                         " damage.";
                             }
                             else if(primaryCmnd.equalsIgnoreCase("speak")){
@@ -288,7 +288,7 @@ class DriverDeux {
 
                         case "villager":
                             if(primaryCmnd.equalsIgnoreCase("look"))
-                                outPutString = currentStateOfThings.getPersonInfo(currentStateOfThings.people[specificChoice]);
+                                outPutString = currentStateOfThings.getPersonInfo((Person) currentStateOfThings.people.get(specificChoice));
                             else if(primaryCmnd.equalsIgnoreCase("use")) {
                                 outPutString = "You realize the villager has a truck and you need help moving...\n" +
                                                "You ask him to help you move while calling him friend.";                //<---still needs work
@@ -309,30 +309,30 @@ class DriverDeux {
 
                                 switch(secObjOrPer){
                                     case "barrel":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.people[specificChoice],
-                                                currentStateOfThings.barrls[secSpecificChoice]);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.people.get(specificChoice),
+                                                (IInventory) currentStateOfThings.barrels.get(secSpecificChoice));
                                         outPutString = "All items transferred from the villager to the barrel.";
                                         break;
                                     case "chest":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.people[specificChoice],
-                                                currentStateOfThings.chests[secSpecificChoice]);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.people.get(specificChoice),
+                                                (IInventory) currentStateOfThings.chests.get(secSpecificChoice));
                                         outPutString = "All items transferred from the villager to the chest.";
                                         break;
                                     case "villager":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.people[specificChoice],
-                                                currentStateOfThings.people[secSpecificChoice]);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.people.get(specificChoice),
+                                                (IInventory) currentStateOfThings.people.get(secSpecificChoice));
                                         outPutString = "The villager protested a bit meekly as you added the other villagers \n" +
                                                 "belongings to his pockets, strangely no one made a big scene of it.";
                                         break;
                                     case "goblin":  //currently not supported
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.people[specificChoice],
-                                                currentStateOfThings.people[secSpecificChoice]);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.people.get(specificChoice),
+                                                (IInventory) currentStateOfThings.people.get(secSpecificChoice));
                                         outPutString = "The goblin thanks you as you empty the villagers items into his\n" +
                                                        "dirty loincloth.";
                                         break;
                                     case "me":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.people[specificChoice],
-                                                currentStateOfThings.player);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.people.get(specificChoice),
+                                                (IInventory) currentStateOfThings.player);
                                         outPutString = "You strip the villager of everything he has while he just stands \n" +
                                                        "there.  Talk about NPC behavior!";
                                         break;
@@ -341,18 +341,18 @@ class DriverDeux {
                                 }//end of barrel transfer switch
                             }//end of transfer else if
                             else if(primaryCmnd.equalsIgnoreCase("attack")){
-                                outPutString = "You attack the villager doing " + currentStateOfThings.attack(currentStateOfThings.people[specificChoice]) +
+                                outPutString = "You attack the villager doing " + currentStateOfThings.attack((IHitable) currentStateOfThings.people.get(specificChoice)) +
                                         " damage.";
                             }
                             else if(primaryCmnd.equalsIgnoreCase("speak")){
                                 outPutString = "You tell the person your hopes, dreams and deepest fears.\n" +
-                                               "They reply:  " + currentStateOfThings.speakTo(currentStateOfThings.people[specificChoice]);
+                                               "They reply:  " + currentStateOfThings.speakTo((Person) currentStateOfThings.people.get(specificChoice));
                             }
                             break;
 
-                        case "goblin":  //currently not supported
+                        case "goblin":
                             if(primaryCmnd.equalsIgnoreCase("look"))
-                                outPutString = currentStateOfThings.getPersonInfo(currentStateOfThings.people[specificChoice]);
+                                outPutString = currentStateOfThings.getPersonInfo((Person) currentStateOfThings.people.get(specificChoice));
                             else if(primaryCmnd.equalsIgnoreCase("use")) {
                                 outPutString = "You would rather not associate with the goblin, even if you do need help moving.";                    //<---still needs work
                             }
@@ -372,30 +372,30 @@ class DriverDeux {
 
                                 switch(secObjOrPer){
                                     case "barrel":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.people[specificChoice],
-                                                currentStateOfThings.barrls[secSpecificChoice]);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.people.get(specificChoice),
+                                                (IInventory) currentStateOfThings.barrels.get(secSpecificChoice));
                                         outPutString = "All items transferred from the goblin to the barrel.";
                                         break;
                                     case "chest":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.people[specificChoice],
-                                                currentStateOfThings.chests[secSpecificChoice]);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.people.get(specificChoice),
+                                                (IInventory) currentStateOfThings.chests.get(secSpecificChoice));
                                         outPutString = "All items transferred from the goblin to the chest.";
                                         break;
                                     case "villager":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.people[specificChoice],
-                                                currentStateOfThings.people[secSpecificChoice]);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.people.get(specificChoice),
+                                                (IInventory) currentStateOfThings.people.get(secSpecificChoice));
                                         outPutString = "The villager protested a bit meekly as you added the  goblins \n" +
                                                 "belongings to his pockets, the goblin does not look happy.";
                                         break;
                                     case "goblin":  //currently not supported
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.people[specificChoice],
-                                                currentStateOfThings.people[secSpecificChoice]);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.people.get(specificChoice),
+                                                (IInventory) currentStateOfThings.people.get(secSpecificChoice));
                                         outPutString = "The goblin didn't notice you add his inventory to the other goblin,\n" +
                                                        "sweet prank bro!";
                                         break;
                                     case "me":
-                                        currentStateOfThings.transferEquipment(currentStateOfThings.people[specificChoice],
-                                                currentStateOfThings.player);
+                                        currentStateOfThings.transferEquipment((IInventory) currentStateOfThings.people.get(specificChoice),
+                                                (IInventory) currentStateOfThings.player);
                                         outPutString = "You strip the goblin of everything he has while he just stands \n" +
                                                        "there.  You know deep down that if a combat function existed this\n" +
                                                        "goblin would be going ham on you.";
@@ -405,12 +405,12 @@ class DriverDeux {
                                 }//end of barrel transfer switch
                             }//end of transfer else if
                             else if(primaryCmnd.equalsIgnoreCase("attack")){
-                                outPutString = "You attack the goblin doing " + currentStateOfThings.attack(currentStateOfThings.people[specificChoice]) +
+                                outPutString = "You attack the goblin doing " + currentStateOfThings.attack((IHitable) currentStateOfThings.people.get(specificChoice)) +
                                         " damage.";
                             }
                             else if(primaryCmnd.equalsIgnoreCase("speak")){
                                 outPutString = "You tell the goblin your hopes, dreams and deepest fears.\n" +
-                                        "They reply:  " + currentStateOfThings.speakTo(currentStateOfThings.people[specificChoice]);
+                                        "They reply:  " + currentStateOfThings.speakTo((Person) currentStateOfThings.people.get(specificChoice));
                             }
                             break;
 
