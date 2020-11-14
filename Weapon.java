@@ -89,15 +89,13 @@ public class Weapon extends Equipment
         
   }
   
-/* -------------------------------------- ??? add back
+
   public boolean use(Person person){
 	attack(person);
-	if(isHitableDestroyed(person) == true)
-	{
-		return true;
-	}
+	
+	return person.isHitableDestroyed();
   }
-*/ //-------------------------------------- ??? add back
+
 
 
 

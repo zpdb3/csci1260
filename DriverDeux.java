@@ -158,7 +158,7 @@ class DriverDeux {
 
                     objOrPer = userCommandArray[0].toLowerCase();
                     int specificChoice = checkNumExist(userCommandArray, 1), secSpecificChoice;
-                    specificItem = userCommandArray[2];
+//                    specificItem = userCommandArray[2];
 
                     switch(objOrPer){
                         case "barrel":

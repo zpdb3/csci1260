@@ -76,6 +76,13 @@ public interface IInventory		//interface declaration vs class
   //   drops the item at the index referenced in the passed variable
   // ***********************  
   
+ // ***********************
+  //   addEquipment)
+  //   add
+  // ***********************  
+ 
+  void addEquipment(Equipment equipment);   
+
   void dropEquipment(int Index);
 
   // ***********************

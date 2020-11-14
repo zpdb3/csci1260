@@ -75,4 +75,9 @@ public class Armor extends Equipment
               super.getDurabilityStatus() + "\", ice:" + (this.hasIceProtection()) +
               ", fire:" + (this.hasFireProtection()) + "}");
   }
+
+	public boolean use(Person person) {
+		person.equip(this);
+		return true;
+	}
 }
