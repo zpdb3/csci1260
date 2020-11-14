@@ -45,8 +45,14 @@ public class World
   //   makeChest Method
   // ***********************  
   public void makeChest() {
+    Chest newChest = new Chest();
     System.out.println("You have called makeChest");	// removeMe
-    chests.add(new Chest());		//adds a chest to the array of chests
+
+    newChest.addEquipment((Equipment) EquipmentManager.makeRandomWeapon());	// +++ adds a random weapon
+    EquipmentManager.makeRandomArmor();		// +++ adds a random armor
+    EquipmentManager.makeRandomConsumable();	// +++ adds a random consumable
+
+    chests.add(newChest);		//adds a chest to the array of chests
 					   
   }  
 
@@ -56,6 +62,10 @@ public class World
   public void makeBarrel() {
     System.out.println("You have called makeBarrel");	// removeMe    
     barrels.add(new Barrel());		//adds a barrel to the array of barrels
+    EquipmentManager.makeRandomWeapon();	// +++ adds a random weapon
+    EquipmentManager.makeRandomArmor();		// +++ adds a random armor
+    EquipmentManager.makeRandomConsumable();	// +++ adds a random consumable
+
   }
 
   // ***********************
@@ -197,29 +207,48 @@ public class World
   }
 
   // ***********************
-  //   speakTo Method				// ??? Are the things to say designed in Person
-  // ***********************  			// or in World
+  //   speakTo Method				
+  // ***********************  			
   public String speakTo(Person person) {
-      //Enter code for speakTo here
-    System.out.println("You have called speakTo");	// removeMe
-    return "Update Return Value Here";
+    
+	Random counter = new Random();
+	int storage = 0;
+	storage = counter.nextInt(3);
+	if(storage == 0)
+	{						// ??? may need if to determine villager vs goblin
+		return person.villagerWordSalad(0);
+	}
+	if(storage == 1)
+	{
+		return person.villagerWordSalad(1);
+	}
+	if(storage == 2)
+	{
+		return person.villagerWordSalad(2);
+	}
+
+    
   }
 
   // ***********************
   //   attack Method				// ??? What is the range of damage that can be done
   // ***********************  
-  public String attack(IHitable target) {
-  
-    System.out.println("You have called attack");	// removeMe
-    return "Update Return Value Here";
+  public int attack(IHitable target) {
+  // Look at the weapon the person has
+  // i.e. player.weapon.attack(target) and it will return the int value of damage done to target 
+  // pass to Weapon.attack the target
+  // take damage value returned value returned and then call the take damage method
+ 
+    String returnValue = player.weapon.attack(target);
+    return returnValue;
   }
 
   // ***********************
   //   transferEquipment
   // ***********************  
   public void transferEquipment(IInventory source, IInventory destination) {
-      //Enter code for transferEquipment here
-    System.out.println("You have called transferEquipment");	// removeMe
+
+   
 
   }
 
@@ -282,13 +311,10 @@ public class World
   //   useEquipment
   // ***********************  
   public boolean useEquipment(Equipment eqmt, Person target) {
-    System.out.println("You have called useEquipment");		// removeMe
-
+    eqmt.use(target);
     return true;
 
   }
-
-
 
 
 

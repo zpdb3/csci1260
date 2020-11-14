@@ -11,13 +11,12 @@ public abstract class Person implements IHitable, IInventory{
     private EquipmentManager inventory;
     private int maxHealth;
     private int currentHealth;
-    private Equipment e;
 
     public Person(String name) {
         this.name = name;
-        maxHealth = getMaxHealth(); //removed this.MaxHealth and super.GetMaxHealth ???
-        currentHealth = getCurrentHealth(); //removed this.currentHealth & super.get ???
-     }
+        this.maxHealth = 50;
+        this.currentHealth = 40;
+    }
 
     public String saySomething() {
 
@@ -34,7 +33,7 @@ public abstract class Person implements IHitable, IInventory{
                 equipSuccess = true;
             }
             else {
-                pickup(helmet);       // ??? removed super.
+                this.pickup(helmet);
                 helmet = (Helmet)e;
                 equipSuccess = true;
             }
@@ -45,7 +44,7 @@ public abstract class Person implements IHitable, IInventory{
                 equipSuccess = true;
             }
             else {
-                pickup(plackart);       ///??? removed super.
+                this.pickup(plackart);
                 plackart = (Plackart)e;
                 equipSuccess = true;
             }
@@ -56,7 +55,7 @@ public abstract class Person implements IHitable, IInventory{
                 equipSuccess = true;
             }
             else {
-                pickup(weapon);		//???remove super.pickup
+                this.pickup(weapon);
                 weapon = (Weapon)e;
                 equipSuccess = true;
             }
@@ -64,7 +63,7 @@ public abstract class Person implements IHitable, IInventory{
 
         return equipSuccess;
     }
-/* ---- ??? add this back
+
     public int attack(IHitable target) {
         int damageDone;
         if(this.weapon == null)
@@ -73,7 +72,7 @@ public abstract class Person implements IHitable, IInventory{
             damageDone = weapon.attack();
         return damageDone;
     }
-*/
+
     public String getName() {
         return this.name;
     }
@@ -109,7 +108,7 @@ public abstract class Person implements IHitable, IInventory{
     }
 
     public boolean isHitableDestroyed() {
-      return false;				//??? change return
+        return this.currentHealth <= 0;
     }
 
     public int takeDamage(int dmg, int fire, int ice) {
@@ -149,7 +148,10 @@ public abstract class Person implements IHitable, IInventory{
     }
 
     public int heal(int amt) {
-	  return 0; //??? change return
+        int amtHealed;
+        amtHealed = this.currentHealth + amt > this.maxHealth ? this.maxHealth - this.currentHealth : amt;
+        currentHealth += amtHealed;
+        return amtHealed;
     }
 
     /*
@@ -157,53 +159,46 @@ public abstract class Person implements IHitable, IInventory{
      */
 
     public void pickup(Equipment e) {
-
+        this.inventory.addEquipment(e);
     }
 
     public void transferAllEquipmentFrom(IInventory other) {
-
+        int count = other.countEquipment();
+        for(int iterate = 0 ; iterate < count ; iterate++){
+            this.inventory.pickup(other.getEquipment[iterate]);
+        }
+        other.dropAllEquipment();
     }
 
     public int countArmor() {
-      return 0; //??? change return
+        return this.inventory.countArmor();
     }
-
-  // ***********************
-  //   countEquipment()
-  //   counts equipment on hand
-  // ***********************  
-  
-    public int countEquipment()  {
-      return 0;
-    }
-
 
     public int countWeapon() {
-  return 0; //??? change return
+        return this.inventory.countWeapon();
     }
 
     public int countConsumables() {
-  return 0; //??? change return
+        return this.inventory.countConsumables();
     }
 
     public String getEquipmentList() {
-      return ""; //??? change return
+        return this.inventory.getEquipmentList();
     }
 
     public String getEquipmentInfo(int index) {
-      return ""; //??? change return
+        return this.inventory.getEquipmentDetails(index);
     }
 
-
     public Equipment getEquipment(int index) {
-      return e;  
+        return this.inventory.getEquipment(index);
     }
 
     public void dropEquipment(int index) {
-
+        this.inventory.removeEquipment(index);
     }
 
     public void dropAllEquipment() {
-
+        this.inventory.clearAll();
     }
 }
