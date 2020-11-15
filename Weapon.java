@@ -86,20 +86,18 @@ public class Weapon extends Equipment
   
   public int attack(IHitable hitable){
 	return hitable.takeDamage(getNormalDamage(), getFireDamage(), getIceDamage());
-        
+        return person.isHitableDestroyed();
   }
   
 
   public boolean use(Person person){
-	attack(person);
-	
-	return person.isHitableDestroyed();
+	person.equip(this);
   }
 
 
 
 
 
-
+ 
 
 }
