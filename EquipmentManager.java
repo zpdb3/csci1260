@@ -92,10 +92,10 @@ public class EquipmentManager implements IInventory
    //GET EQUIPMENT METHODS
 	
 //  @Override
-  public String getEquipmentList() {	        // ??? Change needed						
+  public String getEquipmentList() {	        						
 	String list = "";					// for each loop and return outside the loop
 	for(Equipment e: equipment){
-		list += "\n" + e;
+		list += "     " + e.getName() + "\n";
 	}
 	return list;
   }
@@ -103,7 +103,7 @@ public class EquipmentManager implements IInventory
   public String getEquipmentListDetails() { 
   	String list = "";
 	for(Equipment e: equipment){
-   		list += "\n" + e.toString();
+   		list += e.toString() + "\n";
         } 
 	return list;
  }

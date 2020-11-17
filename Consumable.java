@@ -5,18 +5,16 @@
 
 public abstract class Consumable extends Equipment implements IUsable		 
 {
-  String n;
-  int price;
-  double durability;
 
   // ***********************
   //   Constructor for Consumable
   //   
   // ***********************  
 
-  public Consumable(String name, int price, double durability)  // Constructor
+  public Consumable(String n, int p, double d)  // Constructor
   {
-            
+    super(n, p, d);
+         
   }
 
   // ***********************
@@ -27,7 +25,7 @@ public abstract class Consumable extends Equipment implements IUsable
 
   public void destroy()
   {
-    durability = 0;
+    super.setDurability(0);
   }
 
 // ***********************

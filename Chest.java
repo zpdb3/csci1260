@@ -11,11 +11,13 @@ public class Chest implements IUsable, IInventory
     private EquipmentManager inventory;
 
 
-    public Chest() //creates a new armor object named Chest that possesses the                                              //attribute fire protection
+
+    public Chest() //creates a new armor object named Chest that possesses the                                              
     {
-//        super();
-        String name = "Chest";
-//        activateFireProtection();
+	inventory = new EquipmentManager();
+        inventory.addEquipment(inventory.makeRandomWeapon());
+        inventory.addEquipment(inventory.makeRandomArmor());	
+        inventory.addEquipment(inventory.makeRandomConsumable());
 
 
     }
@@ -63,7 +65,7 @@ public class Chest implements IUsable, IInventory
     }
 
     public String getEquipmentList() {
-        return this.inventory.getEquipmentList();
+        return inventory.getEquipmentList();
     }
 
     public String getEquipmentInfo(int index) {
@@ -73,6 +75,10 @@ public class Chest implements IUsable, IInventory
     public Equipment getEquipment(int index) {
         return this.inventory.getEquipment(index);
     }
+
+   public void addEquipment(Equipment equipment) {
+	
+    }   
 
     public void dropEquipment(int index) {
         this.inventory.removeEquipment(index);

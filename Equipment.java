@@ -92,6 +92,14 @@ public class Equipment
           else
               durability += d;
       }
+
+
+  }
+
+  
+  public boolean use(Person person)
+  {
+    return true;
   }
 
 
