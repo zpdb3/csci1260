@@ -10,7 +10,7 @@ import java.security.SecureRandom;
 import java.util.*;
 import java.util.Random;
 // A class that inventories equipment
-public class EquipmentManager implements Inventory
+public class EquipmentManager implements IInventory
 {
   private ArrayList<Equipment> equipment;
 
@@ -23,50 +23,50 @@ public class EquipmentManager implements Inventory
   //clears all arrayLists
   public void clearAll() 
   {
-	equipment.clear();
+	this.equipment.clear();
   }
   
   // This method uses the countArmor and countWeapon method to determine an equipment total.
-  @Override
+//  @Override
   public int countEquipment() 
   {
     return equipment.size();
   }
-  @Override
+//  @Override
   public int countArmor() 
   {
     int armorCount =0;
 	for(int i=0; i<equipment.size(); i++)
 	{
-		if(equipment(i)instanceof(Armor))
+		if(equipment.get(i) instanceof Armor)
 		{
 			armorCount++;
 		}
 	}
 	return armorCount;
   }
-  @Override
+//  @Override
   public int countWeapon()
   {
     int weaponCount =0;
 	for(int i=0; i<equipment.size(); i++)
 	{
-		if(equipment(i)instanceof(Weapon))
+		if(equipment.get(i) instanceof Weapon)
 		{
 			weaponCount++;
 		}
 	}
 	return weaponCount;
   }
-  @Override
+//  @Override
   public int countConsumables()
   {
-	int consumbaleCount =0;
+	int consumableCount =0;
 	for(int i=0; i<equipment.size(); i++)
 	{
-		if(equipment(i)instanceof(Consumable))
+		if(equipment.get(i) instanceof Consumable)
 		{
-			consumbaleCount++;
+			consumableCount++;
 		}
 	}
 	return consumableCount; 
@@ -76,13 +76,13 @@ public class EquipmentManager implements Inventory
 	equipment.remove(index);
   }
   
-  @Override
+//  @Override
   public void dropEquipment(int index){
 	removeEquipment(index);
   }
-  @Override
+//  @Override
   public void dropAllEquipment(){
-	equipment.clearAll();
+	clearAll();
   }
   
  
@@ -91,53 +91,58 @@ public class EquipmentManager implements Inventory
   
    //GET EQUIPMENT METHODS
 	
-  @Override
-  public String getEquipmentList() {							
-
-	for(int i =0; i<equipment.size(); i++){
-		return equipment(i).toString();
+//  @Override
+  public String getEquipmentList() {	        						
+	String list = "";					// for each loop and return outside the loop
+	for(Equipment e: equipment){
+		list += "     " + e.getName() + "\n";
 	}
+	return list;
   }
   
-  public String getEquipmentListDetails() {
+  public String getEquipmentListDetails() { 
+  	String list = "";
+	for(Equipment e: equipment){
+   		list += e.toString() + "\n";
+        } 
+	return list;
+ }
   
-	for(int i =0; i<equipment.size(); i++){
-		return equipment(i).toString();
-  }
-  }
-  
+
   public String getEquipmentDetails(int index) 
   {
-    return equipment(index).toString;
+    return equipment.get(index).toString();
   }
     
-  @Override
+//  @Override
   public String getEquipmentInfo(int index){
 	  return getEquipmentDetails(index);
   }
 
-  @Override
+//  @Override
   public Equipment getEquipment(int index){
-	return equipment(index);
+	return equipment.get(index);
   }
   
-  @Override
+//  @Override
   public void addEquipment(Equipment e)
   {
-	equipment.add(e); 
+	this.equipment.add(e);
   }
   
-  @Override
-  public void Pickup(Equipment e){
-	equipment.addEquipment(e);
+//  @Override
+  public void pickup(Equipment equipment){
+	addEquipment(equipment);
   }
   
-  @Override
+//  @Override
+
+// ??? Needs to use a loop 
   public void transferAllEquipmentFrom(IInventory other){
 	
-    for(int i =0; i<equipment.size(); i++){
-		equipment(i).pickup();
-  }
+	for(int i=0; i<other.countEquipment(); i++){
+		pickup(other.getEquipment(i));
+	}
 	other.dropAllEquipment();
 	
   }
@@ -147,43 +152,57 @@ public class EquipmentManager implements Inventory
   {
 	Random counter = new Random();
 	int storage = 0;
+        Weapon returnWeapon = new Weapon();
+
 	storage = counter.nextInt(4);
 	if(storage == 0)
 	{
 		Sword sword = new Sword();
+		return (Weapon) sword;
 	}
 	if(storage == 1)
 	{
 		Spear spear = new Spear();
+		return (Weapon) spear;
 	}
 	if(storage == 2)
 	{
 		LongBow longBow = new LongBow();
+		return (Weapon) longBow;
 	}
 	if(storage == 3)
 	{
 		ThrowingAxe throwingAxe = new ThrowingAxe();
+		return (Weapon) throwingAxe;
 	}
+        
+        return returnWeapon;
+        
   }
   
   public static Armor makeRandomArmor()
   {
 	int storage = 0;
+        Armor returnArmor = new Armor();
 	Random counter = new Random();
 	storage = counter.nextInt(2);
 	if(storage == 0)
 	{
 		Helmet helmet = new Helmet();
+		return (Armor) helmet;
 	}
 	if(storage == 1)
 	{
 		Plackart plackart = new Plackart();
+		return (Armor) plackart;
 	}
+        return returnArmor;
   } 
   
-  public static void makeRandomConsumable()
+  public static Consumable makeRandomConsumable()
   {
 	HealthKit healthKit = new HealthKit();
+		return (Consumable) healthKit;
   }
   
 
