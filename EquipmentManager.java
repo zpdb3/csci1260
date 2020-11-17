@@ -4,305 +4,217 @@
 // Team Members: Austen Boda, Duncan Hayes, Eric Caton,
 //                               Jason Joyce, and Paul Brummitt
 // ******
-// The implementation of EquipmentManager will be lead by Duncan Hayes
-// Scaffold by Paul Brummitt, written by Eric Caton and Duncan Hayes
-
+// The implementation of EquipmentManager will be lead by Duncan Hayes, Eric Caton 
 
 import java.security.SecureRandom;
 import java.util.*;
-
+import java.util.Random;
 // A class that inventories equipment
-public class EquipmentManager
+public class EquipmentManager implements IInventory
 {
-  private ArrayList<Plackart> plackarts;
-  private ArrayList<Helmet> helmets;
-  private ArrayList<LongBow> longBows;
-  private ArrayList<ThrowingAxe> throwingAxes;
-  private ArrayList<Spear> spears;
-  private ArrayList<Sword> swords;
+  private ArrayList<Equipment> equipment;
+
  
-  public EquipmentManager() {
-        plackarts = new ArrayList<>();
-	helmets = new ArrayList<>();
-	longBows = new ArrayList<>();
-	throwingAxes = new ArrayList<>();
-	spears = new ArrayList<>();
-	swords = new ArrayList<>();
-  }
-
-  public void clearAll() {
-	plackarts.clear();
-	helmets.clear();
-	longBows.clear();
-	throwingAxes.clear();
-	spears.clear();
-	swords.clear();
-  }
-
-  public int countEquipment() {
-    return (countArmor() + countWeapon());
-  }
-
-  public int countArmor() {
-    return (plackarts.size() + helmets.size());
-  }
-
-  public int countWeapon() {
-    return (longBows.size() + throwingAxes.size() + spears.size() + swords.size());
-  }
-
-  public void removeEquipment(String list, int index) {
-
-    switch (list) {
-      case "plackart":
-      case "PLACKART":
-
-        removeEquipment(plackarts, index);
-        break;
-
-      case "helmet":
-      case "HELMET":
-
-        removeEquipment(helmets, index);
-        break;
-
-      case "spear":
-      case "SPEAR":
-
-        removeEquipment(spears, index);
-        break;
-
-      case "sword":
-      case "SWORD":
-
-        removeEquipment(swords, index);
-        break;
-
-      case "longBow":
-      case "longbow":
-      case "LONGBOW":
-
-        removeEquipment(longBows, index);
-        break;
-
-      case "throwingAxe":
-      case "throwingaxe":
-      case "THROWINGAXE":
-
-        removeEquipment(throwingAxes, index);
-        break;
-
-      default:
-
-    }//end of rmv switch
-  }
-
-  public String getEquipmentDetails(String list, int index) {
-
-    String infoHolder = "";
-
-    switch (list) {
-      case "plackart":
-      case "PLACKART":
-        infoHolder = this.getEquipmentDetails(plackarts, index);
-        break;
-
-      case "helmet":
-      case "HELMET":
-        infoHolder = this.getEquipmentDetails(helmets, index);
-        break;
-
-      case "spear":
-      case "SPEAR":
-        infoHolder = this.getEquipmentDetails(spears, index);
-        break;
-
-      case "sword":
-      case "SWORD":
-        infoHolder = this.getEquipmentDetails(swords, index);
-        break;
-
-      case "longBow":
-      case "longbow":
-      case "LONGBOW":
-        infoHolder = this.getEquipmentDetails(longBows, index);
-        break;
-
-      case "throwingAxe":
-      case "throwingaxe":
-      case "THROWINGAXE":
-        infoHolder = this.getEquipmentDetails(throwingAxes, index);
-        break;
-
-      default:
-
-    }//end of info switch
-
-    return infoHolder;
-  }
-
-  public String getEquipmentList() {
-	int iterator = 1;
-    String returnString = "Plackarts: \n";
-
-    if (plackarts.isEmpty())
-      returnString += "<<empty>>\n";
-    else
-      for (Plackart p : plackarts) {
-        returnString += iterator + ". " + p.getName() + "\n";
-        iterator++;
-      }
-      iterator = 1;
-
-    returnString += "Helmets:  \n";
-    if (helmets.isEmpty())
-      returnString += "<<empty>>\n";
-    else
-      for(Helmet h : helmets) {
-        returnString += iterator + ". " + h.getName() + "\n";
-        iterator++;
-      }
-      iterator = 1;
-
-    returnString += "Long Bows:  \n";
-    if (longBows.isEmpty())
-      returnString += "<<empty>>\n";
-    else
-      for(LongBow l : longBows) {
-        returnString += iterator + ". " + l.getName() + "\n";
-        iterator++;
-      }
-      iterator = 1;
-
-    returnString += "Throwing Axes:  \n";
-    if (throwingAxes.isEmpty())
-      returnString += "<<empty>>\n";
-    else
-      for(ThrowingAxe t : throwingAxes) {
-        returnString += iterator + ". " + t.getName() + "\n";
-        iterator++;
-      }
-      iterator = 1;
-
-    returnString += "Spears:  \n";
-    if (spears.isEmpty())
-      returnString += "<<empty>>\n";
-    else
-      for(Spear s : spears) {
-        returnString += iterator + ". " + s.getName() + "\n";
-        iterator++;
-      }
-      iterator = 1;
-
-    returnString += "Swords:  \n";
-    if (swords.isEmpty())
-      returnString += "<<empty>>\n";
-    else
-      for(Sword s : swords) {
-        returnString += iterator + ". " + s.getName() + "\n";
-        iterator++;
-      }
-
-    return returnString;
-  }
-
-  public String getEquipmentListDetails() {
-    int iterator = 1;
-    String returnString = "Plackarts: \n";
-
-    if (plackarts.isEmpty())
-      returnString += "<<empty>>\n";
-    else
-      for (Plackart p : plackarts) {
-        returnString += iterator + ". " + p.toString() + "\n";
-        iterator++;
-      }
-    iterator = 1;
-
-    returnString += "Helmets:  \n";
-    if (helmets.isEmpty())
-      returnString += "<<empty>>\n";
-    else
-      for(Helmet h : helmets) {
-        returnString += iterator + ". " + h.toString() + "\n";
-        iterator++;
-      }
-    iterator = 1;
-
-    returnString += "Long Bows:  \n";
-    if (longBows.isEmpty())
-      returnString += "<<empty>>\n";
-    else
-      for(LongBow l : longBows) {
-        returnString += iterator + ". " + l.toString() + "\n";
-        iterator++;
-      }
-    iterator = 1;
-
-    returnString += "Throwing Axes:  \n";
-    if (throwingAxes.isEmpty())
-      returnString += "<<empty>>\n";
-    else
-      for(ThrowingAxe t : throwingAxes) {
-        returnString += iterator + ". " + t.toString() + "\n";
-        iterator++;
-      }
-    iterator = 1;
-
-    returnString += "Spears:  \n";
-    if (spears.isEmpty())
-      returnString += "<<empty>>\n";
-    else
-      for(Spear s : spears) {
-        returnString += iterator + ". " + s.toString() + "\n";
-        iterator++;
-      }
-    iterator = 1;
-
-    returnString += "Swords:  \n";
-    if (swords.isEmpty())
-      returnString += "<<empty>>\n";
-    else
-      for(Sword s : swords) {
-        returnString += iterator + ". " + s.toString() + "\n";
-        iterator++;
-      }
-
-    return returnString;
-  }
-
-  public void addPlackart(Plackart p) {
-    plackarts.add(p);
-  }
-
-  public void addHelmet(Helmet h) {
-    helmets.add(h);
-  }
-
-  public void addLongBow(LongBow b) {
-    longBows.add(b);
+  public EquipmentManager() 
+  {
+    equipment = new ArrayList<Equipment>();
   }
   
-  public void addThrowingAxe(ThrowingAxe a) {
-    throwingAxes.add(a);
+  //clears all arrayLists
+  public void clearAll() 
+  {
+	this.equipment.clear();
+  }
+  
+  // This method uses the countArmor and countWeapon method to determine an equipment total.
+//  @Override
+  public int countEquipment() 
+  {
+    return equipment.size();
+  }
+//  @Override
+  public int countArmor() 
+  {
+    int armorCount =0;
+	for(int i=0; i<equipment.size(); i++)
+	{
+		if(equipment.get(i) instanceof Armor)
+		{
+			armorCount++;
+		}
+	}
+	return armorCount;
+  }
+//  @Override
+  public int countWeapon()
+  {
+    int weaponCount =0;
+	for(int i=0; i<equipment.size(); i++)
+	{
+		if(equipment.get(i) instanceof Weapon)
+		{
+			weaponCount++;
+		}
+	}
+	return weaponCount;
+  }
+//  @Override
+  public int countConsumables()
+  {
+	int consumableCount =0;
+	for(int i=0; i<equipment.size(); i++)
+	{
+		if(equipment.get(i) instanceof Consumable)
+		{
+			consumableCount++;
+		}
+	}
+	return consumableCount; 
+  }
+  //Recieves an index to be removed from equipment.
+  public void removeEquipment(int index) {
+	equipment.remove(index);
+  }
+  
+//  @Override
+  public void dropEquipment(int index){
+	removeEquipment(index);
+  }
+//  @Override
+  public void dropAllEquipment(){
+	clearAll();
+  }
+  
+ 
+ 
+
+  
+   //GET EQUIPMENT METHODS
+	
+//  @Override
+  public String getEquipmentList() {	        						
+	String list = "";					// for each loop and return outside the loop
+	for(Equipment e: equipment){
+		list += "     " + e.getName() + "\n";
+	}
+	return list;
+  }
+  
+  public String getEquipmentListDetails() { 
+  	String list = "";
+	for(Equipment e: equipment){
+   		list += e.toString() + "\n";
+        } 
+	return list;
+ }
+  
+
+  public String getEquipmentDetails(int index) 
+  {
+    return equipment.get(index).toString();
+  }
+    
+//  @Override
+  public String getEquipmentInfo(int index){
+	  return getEquipmentDetails(index);
   }
 
-  public void addSpear(Spear s) {
-    spears.add(s);
+//  @Override
+  public Equipment getEquipment(int index){
+	return equipment.get(index);
   }
-
-  public void addSword(Sword s) {
-    swords.add(s);
+  
+//  @Override
+  public void addEquipment(Equipment e)
+  {
+	this.equipment.add(e);
   }
-
-  private void removeEquipment(ArrayList list, int index) {
-	list.remove(index);
+  
+//  @Override
+  public void pickup(Equipment equipment){
+	addEquipment(equipment);
   }
+  
+//  @Override
 
-  private String getEquipmentDetails(ArrayList list, int index) {
+// ??? Needs to use a loop 
+  public void transferAllEquipmentFrom(IInventory other){
+	
+	for(int i=0; i<other.countEquipment(); i++){
+		pickup(other.getEquipment(i));
+	}
+	other.dropAllEquipment();
+	
+  }
+  
+  
+  public static Weapon makeRandomWeapon()
+  {
+	Random counter = new Random();
+	int storage = 0;
+        Weapon returnWeapon = new Weapon();
+
+	storage = counter.nextInt(4);
+	if(storage == 0)
+	{
+		Sword sword = new Sword();
+		return (Weapon) sword;
+	}
+	if(storage == 1)
+	{
+		Spear spear = new Spear();
+		return (Weapon) spear;
+	}
+	if(storage == 2)
+	{
+		LongBow longBow = new LongBow();
+		return (Weapon) longBow;
+	}
+	if(storage == 3)
+	{
+		ThrowingAxe throwingAxe = new ThrowingAxe();
+		return (Weapon) throwingAxe;
+	}
+        
+        return returnWeapon;
+        
+  }
+  
+  public static Armor makeRandomArmor()
+  {
+	int storage = 0;
+        Armor returnArmor = new Armor();
+	Random counter = new Random();
+	storage = counter.nextInt(2);
+	if(storage == 0)
+	{
+		Helmet helmet = new Helmet();
+		return (Armor) helmet;
+	}
+	if(storage == 1)
+	{
+		Plackart plackart = new Plackart();
+		return (Armor) plackart;
+	}
+        return returnArmor;
+  } 
+  
+  public static Consumable makeRandomConsumable()
+  {
+	HealthKit healthKit = new HealthKit();
+		return (Consumable) healthKit;
+  }
+  
+
+  
+  
+  
+  
+  //This private getEquipmentDetails produces the String representation of the Equipment that is selected in the public method.
+  /*private String getEquipmentDetails(ArrayList list, int index) {
     String infoHolder;
     infoHolder = list.get(index).toString();
     return infoHolder;
-  }
+  }*/
 
 }
