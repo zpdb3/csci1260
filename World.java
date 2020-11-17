@@ -1,3 +1,11 @@
+// ******
+// Filename  World.java
+// Team:     Big Bois
+// Team Members: Austen Boda, Duncan Hayes, Eric Caton, 
+//               Jason Joyce, and Paul Brummitt 
+// ******
+
+// Written by Paul Brummitt
 
 import java.security.SecureRandom;
 import java.util.*;
@@ -5,32 +13,53 @@ import java.util.*;
 
 public class World
 {
-  public ArrayList<Chest>  chests;
-  public ArrayList<Barrel> barrels;
-  public ArrayList<Person> people;
-  public Person player;
+  // see p. 475 in text for help with ArrayList objects
+  public ArrayList<Chest>  chests;	//Declare an array of chests
+  public ArrayList<Barrel> barrels;	//Declare an array of barrels
+  public ArrayList<Person> people;	//Declare an array of people
+  public Human player;			//The avatar for the player of the game
 
   public World()
   {
-    // Enter code here
+
     chests  = new ArrayList<Chest>();
     barrels = new ArrayList<Barrel>();
     people  = new ArrayList<Person>();
+    player = new Human();
+
+    // The following statements begin filling the arrays    	
+    makeChest();			 					
+    makeChest();
+    makeChest();
+    makeBarrel();
+    makeBarrel();
+    makeBarrel();
+    makeGoblin();
+    makeGoblin();
+    makeGoblin();
+    makeHuman();
+
+
   }
-  
+
   // ***********************
   //   makeChest Method
   // ***********************  
   public void makeChest() {
-      //Enter code for makeChest here
+    Chest newChest = new Chest();
 
-  }
 
-  // ***********************
+    chests.add(newChest);		//adds a chest to the array of chests
+
+		   
+  }  
+
+// ***********************
   //   makeBarrel Method
   // ***********************  
   public void makeBarrel() {
-      //Enter code for makeBarrel here
+    Barrel newBarrel = new Barrel();   
+    barrels.add(newBarrel);		//adds a barrel to the array of ba
 
   }
 
@@ -38,7 +67,8 @@ public class World
   //   makeHuman Method
   // ***********************  
   public void makeHuman() {
-      //Enter code for makeHuman here
+    Human newHuman = new Human();
+    people.add(newHuman); 		//adds a human to the array of people
 
   }
 
@@ -46,63 +76,93 @@ public class World
   //   makeGoblin Method
   // ***********************  
   public void makeGoblin() {
-      //Enter code for makeGoblin here
-
+    Goblin newGoblin = new Goblin();
+    people.add(newGoblin);		//adds a goblin to the array of people
   }
 
   // ***********************
-  //   listChests Method
+  //   listChests Method			
   // ***********************  
   public String listChests() {
-      //Enter code for listChests here
+
+    int iterator = 0;
+    String returnString = "";
     
-    return "Update Return Value Here";
+    for (Chest name : chests) {
+    returnString += "\n" + iterator + ". Chest: \n" + name.getEquipmentList(); 
+    iterator++;
+    }
+       
+    return returnString;
 
   }
 
-  // ***********************
+
+    // ***********************
   //   listBarrels Method
   // ***********************  
   public String listBarrels() {
-      //Enter code for listBarrels here
+    
+    int iterator = 0;
+    String returnString = "";
+    
+    for (Barrel name : barrels) {
+    returnString += "\n" + iterator + ". Barrel: \n" + name.getEquipmentList(); 
+    iterator++;
+    }
+       
+    return returnString;
 
-    return "Update Return Value Here";
   }
 
   // ***********************
   //   listPeople Method
   // ***********************  
   public String listPeople() {
-      //Enter code for listPeople here
 
-    return "Update Return Value Here";
+    int iterator = 0;
+    String returnString = "";
+    
+    for (Person name : people) {
+    returnString += "\n" + iterator + name.getName(); 
+    iterator++;
+    }
+       
+    return returnString;
   }
 
   // ***********************
-  //   listTargets Method
-  // ***********************  
+  //   listTargets Method			//???Does it matter how items
+  // ***********************                    //   in listTargets are numbered
   public String listTargets() {
-      //Enter code for listTargets here
 
-    return "Update Return Value Here";
+    return this.listChests() + this.listBarrels() + this.listPeople();
   }
 
   // ***********************
-  //   speakTo Method
-  // ***********************  
+  //   speakTo Method				
+  // ***********************  			
   public String speakTo(Person person) {
-      //Enter code for speakTo here
 
-    return "Update Return Value Here";
+	return person.saySomething();  
   }
 
+  // ***********************
+  //   attack Method				// ??? What is the range of damage that can be done
+  // ***********************  
+  public int attack(IHitable target) {
+  	int dmgHld;
+	dmgHld = player.attack(target);
+	System.out.println(dmgHld == 0 ? "No weapon equipped!" : "Target hit.");
+	return dmgHld;
+  }
 
   // ***********************
   //   transferEquipment
   // ***********************  
   public void transferEquipment(IInventory source, IInventory destination) {
-      //Enter code for transferEquipment here
 
+   	destination.transferAllEquipmentFrom(source);
 
   }
 
@@ -112,9 +172,8 @@ public class World
   //   peakInside
   // ***********************  
   public String peakInside(IInventory inventory) {
-      //Enter code for transferEquipment here
-
-    return "Update Return Value Here";
+    
+	return inventory.getEquipmentList();
 
 
   }
@@ -123,9 +182,8 @@ public class World
   //   getPersonInfo
   // ***********************  
   public String getPersonInfo(Person person) {
-      //Enter code for transferEquipment here
 
-    return "Update Return Value Here";
+ 	return person.getName() + "\nHealth:  " +  person.getCurrentHealth() + "/" + person.getMaxHealth();
 
 
   }
@@ -134,9 +192,9 @@ public class World
   //   getPlayerInfo
   // ***********************  
   public String getPlayerInfo() {
-      //Enter code for getPlayerInfo here
+    return player.getName() + "\nHealth:  " +  player.getCurrentHealth() + "/" + player.getMaxHealth();
 
-    return "Update Return Value Here";
+    
 
   }
 
@@ -144,9 +202,7 @@ public class World
   //   listPlayerInventory
   // ***********************  
   public String listPlayerInventory() {
-      //Enter code for getPlayerInfo here
-
-    return "Update Return Value Here";
+   return player.getEquipmentList();
 
   }
 
@@ -155,9 +211,7 @@ public class World
   //   equipEquipment
   // ***********************  
   public boolean equipEquipment(Equipment eqmt) {
-      //Enter code for getPlayerInfo here
-
-    return true;
+    return player.equip(eqmt);
 
   }
 
@@ -165,12 +219,10 @@ public class World
   //   useEquipment
   // ***********************  
   public boolean useEquipment(Equipment eqmt, Person target) {
-      //Enter code for useEquipment here
-
-    return true;
+    
+	return eqmt.use(target);
 
   }
-
 
 
 

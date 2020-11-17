@@ -6,16 +6,18 @@
 // ******
 // The implementation of Chest will be lead by Austen Boda
 
-public abstract class Chest implements IUsable, IInventory
+public class Chest implements IUsable, IInventory
 {
     private EquipmentManager inventory;
 
 
-    public Chest() //creates a new armor object named Chest that possesses the                                              //attribute fire protection
+
+    public Chest() //creates a new armor object named Chest that possesses the                                              
     {
-//        super();
-        String name = "Chest";
-//        activateFireProtection();
+	inventory = new EquipmentManager();
+        inventory.addEquipment(inventory.makeRandomWeapon());
+        inventory.addEquipment(inventory.makeRandomArmor());	
+        inventory.addEquipment(inventory.makeRandomConsumable());
 
 
     }
@@ -26,9 +28,65 @@ public abstract class Chest implements IUsable, IInventory
         return true;
       }
 
-     public void Pickup() {
+     public void Pickup(Equipment e) {
        inventory.addEquipment(e);
      }
 
+/*
+     *  Implementation of IInventory
+     */
 
+    public void pickup(Equipment e) {
+        this.inventory.addEquipment(e);
+    }
+
+    public void transferAllEquipmentFrom(IInventory other) {
+        int count = other.countEquipment();
+        for(int iterate = 0 ; iterate < count ; iterate++){
+            this.inventory.pickup(other.getEquipment(iterate));
+        }
+        other.dropAllEquipment();
+    }
+
+    public int countArmor() {
+        return this.inventory.countArmor();
+    }
+
+    public int countWeapon() {
+        return this.inventory.countWeapon();
+    }
+
+    public int countConsumables() {
+        return this.inventory.countConsumables();
+    }
+
+    public int countEquipment() {
+        return countArmor() + countWeapon() + countConsumables();
+    }
+
+    public String getEquipmentList() {
+        return inventory.getEquipmentList();
+    }
+
+    public String getEquipmentInfo(int index) {
+        return this.inventory.getEquipmentDetails(index);
+    }
+
+    public Equipment getEquipment(int index) {
+        return this.inventory.getEquipment(index);
+    }
+
+   public void addEquipment(Equipment equipment) {
+	
+    }   
+
+    public void dropEquipment(int index) {
+        this.inventory.removeEquipment(index);
+    }
+
+    public void dropAllEquipment() {
+        this.inventory.clearAll();
+    }
 }
+
+
