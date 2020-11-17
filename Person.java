@@ -16,6 +16,11 @@ public abstract class Person implements IHitable, IInventory{
         this.name = name;
         this.maxHealth = 50;
         this.currentHealth = 40;
+	this.thingsToSay = new ArrayList<>();
+	this.helmet = new Helmet();
+	this.plackart = new Plackart();
+	this.weapon = new Weapon();
+	this.inventory = new EquipmentManager();
     }
 
     public String saySomething() {
@@ -69,7 +74,7 @@ public abstract class Person implements IHitable, IInventory{
         if(this.weapon == null)
             damageDone = 0;
         else
-            damageDone = weapon.attack();
+            damageDone = weapon.attack(target);
         return damageDone;
     }
 
@@ -165,21 +170,21 @@ public abstract class Person implements IHitable, IInventory{
     public void transferAllEquipmentFrom(IInventory other) {
         int count = other.countEquipment();
         for(int iterate = 0 ; iterate < count ; iterate++){
-            this.inventory.pickup(other.getEquipment[iterate]);
+            this.inventory.pickup(other.getEquipment(iterate));
         }
         other.dropAllEquipment();
     }
 
     public int countArmor() {
-        return this.inventory.countArmor();
+        return inventory.countArmor();
     }
 
     public int countWeapon() {
-        return this.inventory.countWeapon();
+        return inventory.countWeapon();
     }
 
     public int countConsumables() {
-        return this.inventory.countConsumables();
+        return inventory.countConsumables();
     }
 
     public int countEquipment() {
@@ -197,6 +202,12 @@ public abstract class Person implements IHitable, IInventory{
     public Equipment getEquipment(int index) {
         return this.inventory.getEquipment(index);
     }
+
+ 
+    public void addEquipment(Equipment equipment) {
+	
+    }   
+
 
     public void dropEquipment(int index) {
         this.inventory.removeEquipment(index);

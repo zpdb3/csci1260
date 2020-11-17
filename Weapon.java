@@ -83,11 +83,27 @@ public class Weapon extends Equipment
             super.getDurability() + "\", normal: " + this.getNormalDamage() + ", ice: " + this.getIceDamage() +
             ", fire: " + this.getFireDamage() + ", weaponHandedness: \"" + this.getWeaponHandedness() + "\"}" );
   }
+  
+  public int attack(IHitable hitable){
+	int dmgHld;
+	dmgHld = hitable.takeDamage(getNormalDamage(), getFireDamage(), getIceDamage());
+	if(hitable.isHitableDestroyed())
+		System.out.println("Target is destroyed.");
+	else
+		System.out.println("Tis only a flesh wound!");
+	return dmgHld;
+  }
+  
+
+  public boolean use(Person person){
+	return person.equip(this);
+	
+  }
 
 
 
 
 
-
+ 
 
 }
