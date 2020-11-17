@@ -16,6 +16,11 @@ public abstract class Person implements IHitable, IInventory{
         this.name = name;
         this.maxHealth = 50;
         this.currentHealth = 40;
+	this.thingsToSay = new ArrayList<>();
+	this.helmet = new Helmet();
+	this.plackart = new Plackart();
+	this.weapon = new Weapon();
+	this.inventory = new EquipmentManager();
     }
 
     public String saySomething() {

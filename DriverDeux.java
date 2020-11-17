@@ -158,7 +158,7 @@ class DriverDeux {
 
                     objOrPer = userCommandArray[0].toLowerCase();
                     int specificChoice = checkNumExist(userCommandArray, 1), secSpecificChoice;
-//                    specificItem = userCommandArray[2];
+		    specificItem = userCommandArray.length < 3 ? "" : userCommandArray[2];
 
                     switch(objOrPer){
                         case "barrel":
@@ -166,7 +166,16 @@ class DriverDeux {
                                 outPutString = "Looks like a well made barrel, could probably be used to age whisky " +
                                                "pretty good...";
                             else if(primaryCmnd.equalsIgnoreCase("use")) {
-                                outPutString = "You quickly open and close the barrel a few times.";                    //<---still needs work
+				if(specificItem.equalsIgnoreCase("")){
+                                	outPutString = "You quickly open and close the barrel a few times.";
+				}
+				else{
+					Barrel barrelHold = currentStateOfThings.barrels.get(specificChoice);
+					for(int count = 0; count < barrelHold.countEquipment(); count++) {
+						if(barrelHold.getEquipment(count).getName().equalsIgnoreCase(specificItem))
+							barrelHold.getEquipment(count).use(currentStateOfThings.player);
+					}
+				}
                             }
                             else if(primaryCmnd.equalsIgnoreCase("transfer")){
                                 System.out.println(currentStateOfThings.listTargets());
@@ -224,10 +233,20 @@ class DriverDeux {
                             break;
 
                         case "chest":
-                            if(primaryCmnd.equalsIgnoreCase("look"))
+                            if(primaryCmnd.equalsIgnoreCase("look")){
                                 outPutString = "Looks like a well made chest, could be a mimic though...";
+			    }
                             else if(primaryCmnd.equalsIgnoreCase("use")) {
-                                outPutString = "You cautiously fiddle with the latch, no teeth yet...";                 //<---still needs work
+				if(specificItem.equalsIgnoreCase("")){
+                                	outPutString = "You cautiously fiddle with the latch, no teeth yet...";
+				}
+				else{
+					Chest chestHold = currentStateOfThings.chests.get(specificChoice);
+					for(int count = 0; count < chestHold.countEquipment(); count++) {
+						if(chestHold.getEquipment(count).getName().equalsIgnoreCase(specificItem))
+							chestHold.getEquipment(count).use(currentStateOfThings.player);
+					}
+				}
                             }
                             else if(primaryCmnd.equalsIgnoreCase("transfer")){
                                 System.out.println(currentStateOfThings.listTargets());
@@ -290,8 +309,17 @@ class DriverDeux {
                             if(primaryCmnd.equalsIgnoreCase("look"))
                                 outPutString = currentStateOfThings.getPersonInfo((Person) currentStateOfThings.people.get(specificChoice));
                             else if(primaryCmnd.equalsIgnoreCase("use")) {
-                                outPutString = "You realize the villager has a truck and you need help moving...\n" +
-                                               "You ask him to help you move while calling him friend.";                //<---still needs work
+				if(specificItem.equalsIgnoreCase("")){
+                                	outPutString = "You realize the villager has a truck and you need help moving...\n" +
+                                               "You ask him to help you move while calling him friend."; 
+				}
+				else{
+					Human humanHold = (Human) currentStateOfThings.people.get(specificChoice);
+					for(int count = 0; count < humanHold.countEquipment(); count++) {
+						if(humanHold.getEquipment(count).getName().equalsIgnoreCase(specificItem))
+							humanHold.getEquipment(count).use(currentStateOfThings.player);
+					}
+				}
                             }
                             else if(primaryCmnd.equalsIgnoreCase("transfer")){
                                 System.out.println(currentStateOfThings.listTargets());
@@ -354,7 +382,16 @@ class DriverDeux {
                             if(primaryCmnd.equalsIgnoreCase("look"))
                                 outPutString = currentStateOfThings.getPersonInfo((Person) currentStateOfThings.people.get(specificChoice));
                             else if(primaryCmnd.equalsIgnoreCase("use")) {
-                                outPutString = "You would rather not associate with the goblin, even if you do need help moving.";                    //<---still needs work
+				if(specificItem.equalsIgnoreCase("")){
+                                	outPutString = "You would rather not associate with the goblin, even if you do need help moving.";
+				}
+				else{
+					Goblin goblinHold = (Goblin) currentStateOfThings.people.get(specificChoice);
+					for(int count = 0; count < goblinHold.countEquipment(); count++) {
+						if(goblinHold.getEquipment(count).getName().equalsIgnoreCase(specificItem))
+							goblinHold.getEquipment(count).use(currentStateOfThings.player);
+					}
+				}
                             }
                             else if(primaryCmnd.equalsIgnoreCase("transfer")){
                                 System.out.println(currentStateOfThings.listTargets());
@@ -446,7 +483,7 @@ class DriverDeux {
      */
     public static void clearScreen()  //method to clear the screen not working **ON MAC**
     {
-        System.out.print("\033[H\033[2J");
+     //   System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 

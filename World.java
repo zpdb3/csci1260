@@ -51,8 +51,7 @@ public class World
 
     chests.add(newChest);		//adds a chest to the array of chests
 
-      System.out.println("Index: " + 0 + " Name: " +
-                          chests.get(0));				   
+		   
   }  
 
 // ***********************
@@ -152,8 +151,10 @@ public class World
   //   attack Method				// ??? What is the range of damage that can be done
   // ***********************  
   public int attack(IHitable target) {
-  
-	return player.attack(target);
+  	int dmgHld;
+	dmgHld = player.attack(target);
+	System.out.println(dmgHld == 0 ? "No weapon equipped!" : "Target hit.");
+	return dmgHld;
   }
 
   // ***********************

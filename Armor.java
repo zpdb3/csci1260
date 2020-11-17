@@ -77,7 +77,6 @@ public class Armor extends Equipment
   }
 
 	public boolean use(Person person) {
-		person.equip(this);
-		return true;
+		return person.equip(this);
 	}
 }
