@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class Animal extends IInventory{
+public abstract class Animal implements IInventory{
 	private String name;
 	private ArrayList<String> dialog;
 	private EquipmentManager inventory;
@@ -37,11 +37,11 @@ public abstract class Animal extends IInventory{
 	}
 	
 	public int countTools(){
-		inventory.countTools();
+		return inventory.countTools();
 	}
 	
 	public int countConsumables(){
-		inventory.countConsumables();
+		return inventory.countConsumables();
 	}
 	
 	public int countEquipment(){
@@ -49,18 +49,18 @@ public abstract class Animal extends IInventory{
 	}
 	
 	public String getEquipmentList(){
-		inventory.listEquipment();
+		return inventory.listEquipment();
 	}
 	
 	public String getEquipmentInfo(int index){
-		inventory.getEquipmentDetails();
+		return inventory.getEquipmentDetails(index);
 	}
 	
 	public Equipment getEquipment(int index){
-		inventory.getEquipment();
+		return inventory.getEquipment(index);
 	}
 	
-	public void dropAllEquipment(int index){
+	public void dropAllEquipment(){
 		inventory.clearAllEquipment();
 	}
 	
@@ -69,6 +69,6 @@ public abstract class Animal extends IInventory{
 	}
 	
 	public void addEquipment(Equipment equipment){
-		inventory.addEquipment();
+		inventory.addEquipment(equipment);
 	}
 }

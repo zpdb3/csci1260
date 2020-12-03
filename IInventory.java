@@ -13,7 +13,7 @@ public interface IInventory		//interface declaration vs class
   //   picks up the equipment passed in the variable
   // ***********************  
   
-  void pickup(Equipment equipment);
+  void pickUp(Equipment equipment);
 
   // ***********************
   //   transferAllEquipmentFrom()
