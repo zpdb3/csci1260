@@ -1,0 +1,11 @@
+public class Crow extends Animal{
+	
+	private int maxFear;
+	private int currentFear;
+	
+	public Crow(string name, int currentFear, int maxFear){
+		super(name);
+		this.currentFear = currentFear;
+		this.maxFear = maxFear;
+	}
+}
