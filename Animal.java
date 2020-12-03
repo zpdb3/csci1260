@@ -68,7 +68,7 @@ public abstract class Animal extends IInventory{
 		inventory.removeEquipment(index);
 	}
 	
-	public addEquipment(Equipment equipment){
+	public void addEquipment(Equipment equipment){
 		inventory.addEquipment();
 	}
 }
