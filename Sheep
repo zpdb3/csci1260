@@ -7,5 +7,10 @@ public class Sheep extends Animal{
 		super(name);
 		this.currentFear = currentFear;
 		this.maxFear = maxFear;
+		ArrayList<String> sheepDialog = new ArrayList<>();
+        sheepDialog.add("bahhhhhhhh");
+        sheepDialog.add("");
+        sheepDialog.add("");
+		super.setThingsToSay(sheepDialog);
 	}
 }

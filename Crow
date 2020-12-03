@@ -7,5 +7,10 @@ public class Crow extends Animal{
 		super(name);
 		this.currentFear = currentFear;
 		this.maxFear = maxFear;
+		ArrayList<String> crowDialog = new ArrayList<>();
+        crowDialog.add("CAW! CAW! CAW!");
+        crowDialog.add("");
+        crowDialog.add("");
+		super.setThingsToSay(crowDialog);
 	}
 }
