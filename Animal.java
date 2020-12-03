@@ -1,13 +1,15 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Animal extends IInventory{
+public abstract class Animal extends IInventory{
 	private String name;
-	private ArrayList<String> dialog; 
+	private ArrayList<String> dialog;
+	private EquipmentManager inventory;
 	
 	public Animal(String name){
 		this.name = name;
 		dialog = new ArrayList<>();
+		inventory = new EquipmentManager();
 	}
 	
 	public String talk(){
@@ -28,4 +30,45 @@ public class Animal extends IInventory{
 		dialog = list;
 	}
 	
+	//Implement IInventory
+	
+	public void pickUp(Equipment equipment){
+		inventory.addEquipment(equipment);
+	}
+	
+	public int countTools(){
+		inventory.countTools();
+	}
+	
+	public int countConsumables(){
+		inventory.countConsumables();
+	}
+	
+	public int countEquipment(){
+		return countTools() + countConsumables();
+	}
+	
+	public String getEquipmentList(){
+		inventory.listEquipment();
+	}
+	
+	public String getEquipmentInfo(int index){
+		inventory.getEquipmentDetails();
+	}
+	
+	public Equipment getEquipment(int index){
+		inventory.getEquipment();
+	}
+	
+	public void dropAllEquipment(int index){
+		inventory.clearAllEquipment();
+	}
+	
+	public void dropEquipment(int index){
+		inventory.removeEquipment(index);
+	}
+	
+	public addEquipment(Equipment equipment){
+		inventory.addEquipment();
+	}
 }
