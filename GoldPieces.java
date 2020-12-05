@@ -19,15 +19,18 @@ public class GoldPieces extends Consumable{
 		amount = Amount;
 	}
 	
-	public boolean buyItem(Equipment item, int price){
-		pickUp(item);
-		Amount - price = Amount;
+	public boolean buyItem(int price){
+		if(Amount>price){
+			Amount - price = Amount;
+		}
+		if(Amount<price){
+			return false;
+		}
 		return true; 
 	}
 	
-	public boolean sellItem(Equipment item, int price){
-		pickUp(item);
+	public boolean sellItem(int price){
 		Amount + price = Amount;
 		return true;
-	}
+	}           
 }
