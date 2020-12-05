@@ -1,42 +1,17 @@
-
-
-public class Carrot extends Consumable 
-{
-
-  int initialValue=0;
-
-
-  // ***********************
-  //   Constructor for Carrot
-  //   
-  // ***********************  
-  public Carrot()  // Constructor
-    {
-      super("Health Kit",50,1.0); 
-    }
-
-  // ***********************
-  //   use() Method
-  //   calls Peron's heal() and passes a 5 and returns true if > 0 is received
-  // ***********************  
-
-  public boolean use(Person person)
-  {
-     
-//    return person.heal(5) > 0?true:false;	// ternary operator true does 1st condition
-      return true; 				// remove this line
-  }  
-
-    
-
-//    initialValue = iHitable.heal(5);
-
-  
-  
-
-
-
-
-
-
+public class Carrot extends Seed{
+	
+	public Carrot(){
+		
+	}
+	
+	public Carrot(String name, int price,double durability, OptimalTool optimalTool, boolean crowAble, boolean sheepAble)
+	{
+		super(name,price,durability,optimalTool,crowAble,sheepAble);
+	}
+	
+	public boolean grow(){
+		name = "Carrot Seed";
+		setCrowAble = false;
+		setSheepAble = true;
+	}
 }
