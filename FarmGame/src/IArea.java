@@ -7,11 +7,17 @@
 public interface IArea {
 
     public void populateArea();
+    public void populateArea(int min, String prefType);
     public void animalArea();
+    public void animalArea(int min, String prefType);
     public void mineralArea();
+    public void mineralArea(int min, String prefType);
     public void lumberArea();
+    public void lumberArea(int min);
     public void seedArea();
+    public void seedArea(int min, String prefType);
     public String generateName();
     public String generateDescription(String name);
-    public void improve(String improvement);
+    public boolean checkIfImproved();
+    public void improve(boolean improved);
 }

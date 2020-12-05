@@ -13,6 +13,7 @@ public class Field extends Exterior {
         super();
         String name = generateName();
         setName(name);
+        setIconPath("FieldIcon.png");
         setDescription(generateDescription(name));
         setOptimalTool("hoe");
         setHasScarecrow(false);
@@ -21,10 +22,21 @@ public class Field extends Exterior {
         mineralArea();
         lumberArea();
         seedArea();
+        if(name.equalsIgnoreCase("Terraced Hills")){
+            setImagePath("terracedField.png");
+        }
+        else if(name.equalsIgnoreCase("Pasture")){
+            setImagePath("pastureField.png");
+        }
+        else {
+            setImagePath("fallowField.png");
+        }
     }
 
-    public Field(String name, String description, String optimalTool, boolean hasScarecrow){
-        super(name, description, optimalTool, hasScarecrow);
+    public Field(String name, String iconPath, String imagePath, String type, String description, String optimalTool,
+                 boolean hasScarecrow, int minPerson, String prefPerson, int minAnimal, String prefAnimal, int minSeed,
+                 String prefSeed, int minLumber, int minOre, String prefOre){
+        super(name, iconPath, imagePath, type, description, optimalTool, hasScarecrow);
         populateArea();
         animalArea();
         mineralArea();
@@ -45,15 +57,43 @@ public class Field extends Exterior {
         setPersonAL(personAL);
     }
 
+    public void populateArea(int min, String prefType) {
+        Random dice = new Random();
+        int roll = dice.nextInt(6) + min;
+        int weight = prefType.equalsIgnoreCase("trader") ? 15 : 0;
+        ArrayList<Person> personAL = new ArrayList<Person>();
+        for(int count = 0; count < roll; count++){
+            if(dice.nextInt(50) <  weight)
+                personAL.add(new Trader());
+            else
+                personAL.add(new Neighbor());
+        }
+        setPersonAL(personAL);
+    }
+
     public void animalArea(){
         Random dice = new Random();
         int roll = dice.nextInt(8);
         ArrayList<Animal> animalAL = new ArrayList<Animal>();
         for(int count = 0; count < roll; count++){
             if(dice.nextInt(2) == 0)
-                animalAL.add((Animal)new Crow());
+                animalAL.add(new Crow());
             else
-                animalAL.add((Animal)new Sheep());
+                animalAL.add(new Sheep());
+        }
+        setAnimalAL(animalAL);
+    }
+
+    public void animalArea(int min, String prefType) {
+        Random dice = new Random();
+        int roll = dice.nextInt(8) + min;
+        int weight = prefType.equalsIgnoreCase("sheep") ? 3 : 0;
+        ArrayList<Animal> animalAL = new ArrayList<Animal>();
+        for(int count = 0; count < roll; count++){
+            if(dice.nextInt(weight) == 0)
+                animalAL.add(new Crow());
+            else
+                animalAL.add(new Sheep());
         }
         setAnimalAL(animalAL);
     }
@@ -63,7 +103,21 @@ public class Field extends Exterior {
         int roll = dice.nextInt(1);
         ArrayList<Ore> oreAL = new ArrayList<Ore>();
         for(int count = 0; count < roll; count++){
-            oreAL.add((Ore)new Iron());
+            oreAL.add(new Iron());
+        }
+        setOreAL(oreAL);
+    }
+
+    public void mineralArea(int min, String prefType) {
+        Random dice = new Random();
+        int roll = dice.nextInt(1) + min;
+        int weight = prefType.equalsIgnoreCase("gold") ? 2 : 3;
+        ArrayList<Ore> oreAL = new ArrayList<Ore>();
+        for(int count = 0; count < roll; count++){
+            if(count % weight == 0)
+                oreAL.add(new Gold());
+            else
+                oreAL.add(new Iron());
         }
         setOreAL(oreAL);
     }
@@ -78,17 +132,54 @@ public class Field extends Exterior {
         setLumberAL(lumberAL);
     }
 
+    public void lumberArea(int min) {
+        Random dice = new Random();
+        int roll = dice.nextInt(2) + min;
+        ArrayList<Lumber> lumberAL = new ArrayList<Lumber>();
+        for(int count = 0; count < roll; count++){
+            lumberAL.add(new Lumber());
+        }
+        setLumberAL(lumberAL);
+    }
+
     public void seedArea(){
         Random dice = new Random();
         int roll = dice.nextInt(20);
         ArrayList<Seed> seedAL = new ArrayList<Seed>();
         for(int count = 0; count < roll; count++){
             if((roll + 1) % 2 == 0)
-                seedAL.add((Seed) new Corn());
+                seedAL.add(new Corn());
             else if((roll + 1) % 5 == 0)
-                seedAL.add((Seed) new Watermelon());
+                seedAL.add(new Watermelon());
             else
-                seedAL.add((Seed) new Carrot());
+                seedAL.add(new Carrot());
+        }
+        setSeedAL(seedAL);
+    }
+
+    public void seedArea(int min, String prefType) {
+        Random dice = new Random();
+        int roll = dice.nextInt(20) + min;
+        ArrayList<Seed> seedAL = new ArrayList<Seed>();
+        for(int count = 0; count < roll; count++, min--){
+            if(min != 0){
+                switch(prefType){
+                    case "Watermelon":
+                        seedAL.add(new Watermelon()); break;
+                    case "Carrot":
+                        seedAL.add(new Carrot()); break;
+                    default:
+                        seedAL.add(new Corn()); break;
+                }
+            }
+            else {
+                if ((roll + 1) % 2 == 0)
+                    seedAL.add(new Corn());
+                else if ((roll + 1) % 5 == 0)
+                    seedAL.add(new Watermelon());
+                else
+                    seedAL.add(new Carrot());
+            }
         }
         setSeedAL(seedAL);
     }
@@ -115,7 +206,7 @@ public class Field extends Exterior {
         return description;
     }
 
-    public void improve(String improvement){
+    public void improve(boolean improved){
 
     }
 }
