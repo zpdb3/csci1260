@@ -13,5 +13,6 @@ public class Watermelon extends Seed{
 		name = "Watermelon Seed";
 		setCrowAble = false;
 		setSheepAble = false;
+		return true;
 	}
 }

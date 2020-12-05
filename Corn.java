@@ -13,5 +13,6 @@ public class Corn extends Seed{
 		name = "Corn Seed";
 		setCrowAble = true;
 		setSheepAble = false;
+		return true;
 	}
 }
