@@ -1,7 +1,7 @@
 public class Watermelon extends Seed{
 	
 	public Watermelon(){
-		
+		super();
 	}
 	
 	public Watermelon(String name, int price,double durability, OptimalTool optimalTool, boolean crowAble, boolean sheepAble)
@@ -10,9 +10,6 @@ public class Watermelon extends Seed{
 	}
 	
 	public boolean grow(){
-		name = "Watermelon Seed";
-		setCrowAble = false;
-		setSheepAble = false;
 		return true;
 	}
 }

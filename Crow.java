@@ -4,6 +4,10 @@ public class Crow extends Animal{
 	private int maxFear;
 	private int currentFear;
 	
+	public Crow(){
+		super();
+	}
+
 	public Crow(String name, int currentFear, int maxFear){
 		super(name);
 		this.currentFear = currentFear;

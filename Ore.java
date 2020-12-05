@@ -1,9 +1,10 @@
-public class Ore{
+public class Ore extends Consumable {
 	
 	private OptimalTool optimalTool;
 	
 	public Ore(String name, int price, double durability, OptimalTool optimalTool){
 		super(name,price,durability);
+		this.optimalTool = optimalTool;
 	}
 	
 	public Ore(){

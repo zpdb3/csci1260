@@ -1,16 +1,17 @@
 // ******
-// Filename:   Hoe
+// Filename:   Hammer
 // Team:       Big Bois
 // Team Members: Austen Boda, Duncan Hayes, Eric Caton,
 //                               Jason Joyce, and Paul Brummitt
 // ******
-// The implementation of Hoe will be lead by Paul Brummitt
+// The implementation of Hammer will be lead by Jason Joyce
 
-public class Hoe extends Tool {
+public class Hammer extends Tool  {
 
-    public Hoe() {
+    public Hammer() {
           super();
-          setName("Hoe");
+          setName("Hammer");
+
     }
 
 }

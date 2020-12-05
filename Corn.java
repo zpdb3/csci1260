@@ -1,7 +1,7 @@
 public class Corn extends Seed{
 	
 	public Corn(){
-		
+		super();
 	}
 	
 	public Corn(String name, int price,double durability, OptimalTool optimalTool, boolean crowAble, boolean sheepAble)
@@ -10,9 +10,6 @@ public class Corn extends Seed{
 	}
 	
 	public boolean grow(){
-		name = "Corn Seed";
-		setCrowAble = true;
-		setSheepAble = false;
 		return true;
 	}
 }

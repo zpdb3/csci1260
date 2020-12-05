@@ -5,6 +5,9 @@ public abstract class Animal implements IInventory{
 	private String name;
 	private ArrayList<String> dialog;
 	private EquipmentManager inventory;
+
+	public Animal(){
+	}
 	
 	public Animal(String name){
 		this.name = name;

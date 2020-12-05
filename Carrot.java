@@ -1,7 +1,7 @@
 public class Carrot extends Seed{
 	
 	public Carrot(){
-		
+		super();
 	}
 	
 	public Carrot(String name, int price,double durability, OptimalTool optimalTool, boolean crowAble, boolean sheepAble)
@@ -10,9 +10,6 @@ public class Carrot extends Seed{
 	}
 	
 	public boolean grow(){
-		name = "Carrot Seed";
-		setCrowAble = false;
-		setSheepAble = true;
 		return true;
 	}
 }

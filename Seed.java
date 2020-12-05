@@ -9,20 +9,20 @@ public class Seed extends Consumable
   // ***********************
   //   Constructor for Seed
   //   
-  // ***********************  
+  // *********************** 
+
+  public Seed() {
+	super();
+}
+ 
   public Seed(String name, int price, double durability, OptimalTool optimalTool, boolean crowAble, boolean sheepAble)  // Constructor
     {
-      this.name = name;
-	  this.durability = durability;
+	  super(name,price,durability);
 	  this.optimalTool = optimalTool;
 	  this.crowAble = crowAble;
 	  this.sheepAble = sheepAble;
     }
 
-  // ***********************
-  //   use() Method
-  //   calls Peron's heal() and passes a 5 and returns true if > 0 is received
-  // ***********************  
 
   public OptimalTool getOptimalTool(){
 	  return optimalTool;
@@ -42,13 +42,14 @@ public class Seed extends Consumable
   
   public void setCrowAble(boolean b){
 	  b = crowAble;
-  }
-  
-  public boolean grow(){
-	  
+  	  
   }
 
   
+  public boolean grow(){
+    return true;	  
+  }
+
   
 
 

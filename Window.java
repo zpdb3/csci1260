@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,16 +17,16 @@ public class Window extends JFrame implements ActionListener {
     private JFrame areaf;
     private JLabel imageLabel;
     private ArrayList<JButton> buttonAL;
-    private JLabel worldLabel;
+    private JTextArea worldTextArea;
     private JLabel dayLabel;
     private JLabel actionLabel;
-    private JLabel areaLabel;
+    private JTextArea areaTextArea;
     private JLabel dayLabel1;
     private JLabel actionLabel1;
     private JButton axeB;
     private JButton hoeB;
     private JButton shovelB;
-    private JButton pickaxeB;
+    private JButton scarecrowB;
     private JButton fireworkB;
     private JButton talkB;
     private JButton pickupB;
@@ -66,110 +67,114 @@ public class Window extends JFrame implements ActionListener {
                 buttonAL.add(b);
             }
         }
-        worldLabel = new JLabel("World Information");
-        worldLabel.setBounds(510, 10, 290, 590);
-        worldf.add(worldLabel);
+        worldTextArea = new JTextArea("World Information");
+        worldTextArea.setEditable(false);
+        worldTextArea.setOpaque(true);
+        worldTextArea.setBackground(Color.GRAY);
+        worldTextArea.setBounds(510, 10, 290, 610);
+        worldf.add(worldTextArea);
 
         actionLabel = new JLabel("Actions Left:  ", SwingConstants.CENTER);
-        actionLabel.setBounds(10, 530, 190,90);
+        actionLabel.setOpaque(true);
+        actionLabel.setBackground(Color.GREEN);
+        actionLabel.setBounds(10, 520, 190,90);
         worldf.add(actionLabel);
 
         dayLabel = new JLabel("Days Left:  ", SwingConstants.CENTER);
         dayLabel.setOpaque(true);
         dayLabel.setBackground(Color.GREEN);
-        dayLabel.setBounds(210, 530, 190, 90);
+        dayLabel.setBounds(210, 520, 190, 90);
         worldf.add(dayLabel);
 
         worldf.setSize(810, 650);
         worldf.setLayout(null);
+        worldf.getContentPane().setBackground(Color.DARK_GRAY);
         worldf.setVisible(true);
 
 
-        areaLabel = new JLabel("Area Information");
-        areaLabel.setBounds(510, 10, 290, 590);
-        areaf.add(areaLabel);
+        areaTextArea = new JTextArea("Area Information");
+        areaTextArea.setEditable(false);
+        areaTextArea.setOpaque(true);
+        areaTextArea.setBackground(Color.GRAY);
+        areaTextArea.setBounds(510, 10, 290, 610);
+        areaf.add(areaTextArea);
 
-        axeB = new JButton("Use Axe");
-        axeB.setBounds(10, 420, 90, 20);
+        icon = new ImageIcon("axeIcon.png");
+        axeB = new JButton(icon);
+        axeB.setBounds(10, 420, 90, 60);
         axeB.addActionListener(this);
         areaf.add(axeB);
 
-        hoeB = new JButton("Use Hoe");
-        hoeB.setBounds(110, 420, 90, 20);
+        icon = new ImageIcon("hoeIcon.png");
+        hoeB = new JButton(icon);
+        hoeB.setBounds(110, 420, 90, 60);
         hoeB.addActionListener(this);
         areaf.add(hoeB);
 
-        shovelB = new JButton("Use Shovel");
-        shovelB.setBounds(210, 420, 90, 20);
+        icon = new ImageIcon("shovelIcon.png");
+        shovelB = new JButton(icon);
+        shovelB.setBounds(210, 420, 90, 60);
         shovelB.addActionListener(this);
         areaf.add(shovelB);
 
-        pickaxeB = new JButton("Use Pickaxe");
-        pickaxeB.setBounds(310, 420, 90, 20);
-        pickaxeB.addActionListener(this);
-        areaf.add(pickaxeB);
+        icon = new ImageIcon("scarecrowIcon.png");
+        scarecrowB = new JButton(icon);
+        scarecrowB.setBounds(310, 420, 90, 60);
+        scarecrowB.addActionListener(this);
+        areaf.add(scarecrowB);
 
-        fireworkB = new JButton("Use Firework");
-        fireworkB.setBounds(410, 420, 90, 20);
+        icon = new ImageIcon("fireworkIcon.png");
+        fireworkB = new JButton(icon);
+        fireworkB.setBounds(410, 420, 90, 60);
         fireworkB.addActionListener(this);
         areaf.add(fireworkB);
 
-        talkB = new JButton("Talk");
-        talkB.setBounds(10, 450, 90, 20);
+        icon = new ImageIcon("talkIcon.png");
+        talkB = new JButton(icon);
+        talkB.setBounds(10, 490, 90, 60);
         talkB.addActionListener(this);
         areaf.add(talkB);
 
-        pickupB = new JButton("Pick Up Items");
-        pickupB.setBounds(110, 450, 90, 20);
+        icon = new ImageIcon("pickupIcon.png");
+        pickupB = new JButton(icon);
+        pickupB.setBounds(110, 490, 90, 60);
         pickupB.addActionListener(this);
         areaf.add(pickupB);
 
-        repairB = new JButton("Repair");
-        repairB.setBounds(210, 450, 90, 20);
+        icon = new ImageIcon("repairIcon.png");
+        repairB = new JButton(icon);
+        repairB.setBounds(210, 490, 90, 60);
         repairB.addActionListener(this);
         areaf.add(repairB);
 
-        restB = new JButton("Rest");
-        restB.setBounds(310, 450, 90, 20);
+
+        icon = new ImageIcon("restIcon.png");
+        restB = new JButton(icon);
+        restB.setBounds(310, 490, 90, 60);
         restB.addActionListener(this);
         areaf.add(restB);
 
-        backToWorldB = new JButton("World Map");
-        backToWorldB.setBounds(410, 450, 90, 20);
+        icon = new ImageIcon("worldMapIcon.png");
+        backToWorldB = new JButton(icon);
+        backToWorldB.setBounds(410, 490, 90, 60);
         backToWorldB.addActionListener(this);
         areaf.add(backToWorldB);
 
         actionLabel1 = new JLabel("Actions Left:  ", SwingConstants.CENTER);
-        actionLabel1.setBounds(10, 530, 190, 90);
+        actionLabel1.setBounds(10, 560, 190, 60);
         actionLabel1.setOpaque(true);
         actionLabel1.setBackground(Color.GREEN);
         areaf.add(actionLabel1);
 
         dayLabel1 = new JLabel("Days Left:  ", SwingConstants.CENTER);
-        dayLabel1.setBounds(210, 530, 190, 90);
+        dayLabel1.setBounds(210, 560, 190, 60);
+        dayLabel1.setOpaque(true);
+        dayLabel1.setBackground(Color.GREEN);
         areaf.add(dayLabel1);
-
-/*
-        try {
-            scaledImage = ImageIO.read(new File("testImage.png"));
-            image =  scaledImage.getScaledInstance(490, 400, Image.SCALE_AREA_AVERAGING);
-            imageLabel = new JLabel(new ImageIcon(image));
-            imageLabel.setBounds(10, 10, 490, 400);
-            areaf.add(imageLabel);
-        }
-        catch(IOException e) {
-            JFrame oopsieF = new JFrame("No file loaded");
-            oopsieF.setSize(300, 300);
-            oopsieF.setLayout(null);
-            oopsieF.setVisible(true);
-            areaf.setVisible(false);
-            worldf.setVisible(false);
-        }
-*/
-
 
         areaf.setSize(810, 650);
         areaf.setLayout(null);
+        areaf.getContentPane().setBackground(Color.DARK_GRAY);
         areaf.setVisible(false);
 
 
@@ -200,9 +205,9 @@ public class Window extends JFrame implements ActionListener {
                     worldf.setVisible(false);
                 }
 
-                areaLabel.setText("set basic welcome text and description");
+                areaTextArea.setText("set basic welcome text and description");
                 //update actions because of travel
-                areaf.update(areaLabel.getGraphics());
+                areaf.update(areaTextArea.getGraphics());
                 areaf.update(imageLabel.getGraphics());
 
             }

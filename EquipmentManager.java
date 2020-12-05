@@ -27,6 +27,14 @@ public class EquipmentManager implements IInventory
 	equipment.clear();
   }
   
+
+// removeByEquipment
+
+  public void removeByEquipment(Equipment e) {
+    equipment.remove(e);
+  }
+
+
 //Receives an index to be removed from equipment.
   public void removeEquipment(int index) {
 	equipment.remove(index);

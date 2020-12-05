@@ -2,7 +2,8 @@ public class Lumber extends Consumable{
 	private OptimalTool optimalTool;
 	
 	public Lumber(String name, int price, double durability, OptimalTool optimalTool){
-		super(name, price, durability, optimalTool);
+		super(name, price, durability);
+		this.optimalTool = optimalTool;
 	}
 	
 	public Lumber(){

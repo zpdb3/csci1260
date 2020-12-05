@@ -1,6 +1,7 @@
 public class GoldPieces extends Consumable{
 	
-	private int Amount
+	private int amount;
+
 	
 	public GoldPieces(String name, int price, double durability, int amount){
 		super(name, price, durability);
@@ -9,28 +10,31 @@ public class GoldPieces extends Consumable{
 	
 	public GoldPieces(){
 		super();
+		amount = 200;
 	}
 	
 	public int getAmount(){
-		return Amount;
+		return amount;
 	}
 	
 	public void setAmount(int amount){
-		amount = Amount;
+		this.amount = amount;
 	}
 	
 	public boolean buyItem(int price){
-		if(Amount>price){
-			Amount - price = Amount;
+		if(amount>price){
+			amount = amount - price;
+			
 		}
-		if(Amount<price){
+		if(amount<price){
 			return false;
 		}
 		return true; 
 	}
 	
 	public boolean sellItem(int price){
-		Amount + price = Amount;
+		
+		amount = amount + price;
 		return true;
 	}           
 }

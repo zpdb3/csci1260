@@ -1,0 +1,13 @@
+Farmers Only Inn,SettlementIcon.png,FarmersOnlyInn.png,Structure,A rustic little inn in a small farming community.,hammer,true,2,trader,0,null,0,null,3,3,Iron
+General Store,SettlementIcon.png,generalStore.png,Structure,A well kept store.  It contains about anything you could need for improving the local area.,hammer,false,1,trader,0,null,0,null,0,0,null
+Cozy Inn,SettlementIcon.png,medievalInn.png,Structure,A cozy little inn.  Perhaps resting here will provide extra rewards.,hammer,false,3,neighbor,0,null,0,null,0,0,null
+Warehouse,SettlementIcon.png,warehouse.png,Structure,An empty warehouse.  Well empty of people…,hammer,false,0,null,0,null,10,Watermelon,10,10,null
+Rain Forest,ForestIcon.png,rainForest.png,Forest,A forest teaming with life.  It is hot and seems like it is about to rain.,axe,false,0,null,4,Crow,0,null,15,0,null
+Boreal Forest,ForestIcon.png,borealForest.png,Forest,A chill falls upon you as you enter this forest.  You see many good lumber trees.,axe,false,0,null,0,null,0,null,20,0,null
+Temperate Forest,ForestIcon.png,temperateForest.png,Forest,A large forest with a comfortable climate.,axe,false,0,null,0,null,0,null,15,0,null
+Strip Mine,MineIcon.png,stripMine.png,Mine,A large scar in the land is visible with exposed bedrock and ore veins.,shovel,false,0,null,0,null,0,null,0,10,Iron
+Underground Mine,MineIcon.png,horizontalMine.png,Mine,An unassuming mine entrance leads to a few diagonal shafts with ore veins.,shovel,false,0,null,0,null,0,null,0,3,Gold
+Placer Mine,MineIcon.png,placerMine.png,Mine,A creek runs through the area with sediment being carried slowly through, there are mining pans and sieves laying about.,shovel,false,1,neighbor,0,null,0,null,0,4,Gold
+Terraced Hills,FieldIcon.png,terracedField.png,Field,A series of well engineered terraces built on to hills to maximize arable land availability.,hoe,false,0,null,5,Crow,20,Corn,0,0,null
+Fallow Field,FieldIcon.png,fallowField.png,Field,A flat farming field.  It seems to have little growing on it.,hoe,false,0,null,2,Crow,2,Watermelon,0,0,null
+Pasture,FieldIcon.png,pastureField.png,Field,A large piece of fenced in land with wild grass growing.,hoe,false,1,neighbor,7,Sheep,10,Carrot,1,0,null

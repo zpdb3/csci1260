@@ -15,6 +15,6 @@
 public enum OptimalTool
 {
 
-	Hoe, Pickaxe, Shovel, Axe;
+	Hoe, Hammer, Shovel, Axe;
 
 }

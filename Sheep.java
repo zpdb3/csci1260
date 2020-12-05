@@ -3,6 +3,10 @@ public class Sheep extends Animal{
 	
 	private int maxFear;
 	private int currentFear;
+
+	public Sheep() {
+		super();
+	}
 	
 	public Sheep(String name, int currentFear, int maxFear){
 		super(name);

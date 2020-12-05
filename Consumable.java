@@ -22,6 +22,10 @@ public abstract class Consumable extends Equipment implements IUsable
  //   
  // ***********************  
 
+  public Consumable() {
+	super();
+} 
+
   public Consumable(String name, int price, double durability)  // Constructor
   {
     super(name, price, durability);
