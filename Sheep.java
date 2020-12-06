@@ -1,18 +1,20 @@
 import java.util.ArrayList;
+public class Sheep extends Animal{
+	
+	private int maxFear;
+	private int currentFear;
 
-public class Sheep extends Person {
-
-    public Sheep() {
-        this("Villager");
-    }
-
-    public Sheep(String name) {
-        super(name);
-        ArrayList<String> villagerWordSalad = new ArrayList<>();
-        villagerWordSalad.add("I used to be an adventurer like you, then I took an arrow to the knee.");
-        villagerWordSalad.add("Help!  Help!  I'm being repressed! Come see the violence inherent in the system!");
-        villagerWordSalad.add("Oh, but you can't expect to wield supreme executive power just because some watery " +
-                "tart threw a sword at you!");
-//        super.setThingsToSay(villagerWordSalad);
-    }
+	public Sheep() {
+		super();
+	}
+	
+	public Sheep(String name, int currentFear, int maxFear){
+		super(name);
+		this.currentFear = currentFear;
+		this.maxFear = maxFear;
+		ArrayList<String> sheepDialog = new ArrayList<>();
+        sheepDialog.add("bahhhhhhhh");
+        sheepDialog.add("The Sheep stares into your soul blankly");
+		super.setThingsToSay(sheepDialog);
+	}
 }

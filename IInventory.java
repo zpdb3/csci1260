@@ -13,84 +13,66 @@ public interface IInventory		//interface declaration vs class
   //   picks up the equipment passed in the variable
   // ***********************  
   
-  void pickup(Equipment equipment);
+public void pickUp(Equipment equipment);
 
-  // ***********************
-  //   transferAllEquipmentFrom()
-  //   method to transfer equipment
-  // ***********************  
-  
-  void transferAllEquipmentFrom(IInventory other);
-
-  // ***********************
-  //   countArmor()
-  //   enumerate armor on hand
-  // ***********************  
-  
-  int countArmor();
 
   // ***********************
   //   countWeapon()
   //   counts the weapons
   // ***********************  
   
-  int countWeapon();
+public  int countTools();
 
   // ***********************
-  //   countConsumables()
-  //   counts consumables on hand
+  //   countTools()
+  //   counts Tools on hand
   // ***********************  
   
-  int countConsumables();
-
-  // ***********************
-  //   countEquipment()
-  //   counts equipment on hand
-  // ***********************  
-  
-  int countEquipment();
+public  int countConsumables();
 
   // ***********************
   //   getEquipmentList()
   //   provides a list of equipment
   // ***********************  
   
-  String getEquipmentList();
+public   String getEquipmentList();
 
   // ***********************
   //   getEquipmentInfo()
   //   gets info about equipment status
   // ***********************  
   
-  String getEquipmentInfo(int Index);
+  public   String getEquipmentInfo(int Index);
 
   // ***********************
   //   getEquipment()
   //   picks up the equipment passed in the variable
   // ***********************  
   
-  Equipment getEquipment(int Index);
+  public   Equipment getEquipment(int Index);
 
   // ***********************
   //   dropEquipment()
   //   drops the item at the index referenced in the passed variable
   // ***********************  
+
+  public   void dropEquipment(int Index);
   
  // ***********************
   //   addEquipment)
   //   add
   // ***********************  
  
-  void addEquipment(Equipment equipment);   
+  public  void addEquipment(Equipment equipment);   
 
-  void dropEquipment(int Index);
+
 
   // ***********************
   //   dropAllEquipment)
   //   drops all items
   // ***********************  
   
-  void dropAllEquipment();
+  public   void dropAllEquipment();
 
 
 }

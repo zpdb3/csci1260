@@ -1,3 +1,12 @@
+// ******
+// Filename:   Trader
+// Team:       Big Bois
+// Team Members: Austen Boda, Duncan Hayes, Eric Caton,
+//                               Jason Joyce, and Paul Brummitt
+// ******
+// Written by Paul Brummitt
+
+
 import java.util.ArrayList;
 
 public class Trader extends Person{
@@ -9,9 +18,9 @@ public class Trader extends Person{
     public Trader(String name) {
         super(name);
         ArrayList<String> TraderWordSalad = new ArrayList<>();
-        TraderWordSalad.add("Me know nothing about that.  Me simple Trader.");
-        TraderWordSalad.add("Me just sitting here sharpening my sword... Who's buggin' me now?");
-        TraderWordSalad.add("Ohhh!  Lunch delivered itself today!");
+        TraderWordSalad.add("A carrot a day keeps the doctor away!");
+        TraderWordSalad.add("What's it going to take to put you in a new tractor today?");
+        TraderWordSalad.add("While you were playing pattycake, Uncle Rico just made some moolah!");
         super.setThingsToSay(TraderWordSalad);
     }
 }

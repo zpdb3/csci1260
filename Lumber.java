@@ -1,48 +1,20 @@
-  // ***********************
-  //   Class: Lumber
-  //   
-  // ***********************  
-
-public abstract class Lumber extends Equipment implements IUsable		 
-{
-
-  // ***********************
-  //   Constructor for Lumber
-  //   
-  // ***********************  
-
-  public Lumber(String n, int p, double d)  // Constructor
-  {
-    super(n, p, d);
-         
-  }
-
-  // ***********************
-  //   destroy() Method
-  //   sets durability to 0
-  // ***********************  
-
-
-  public void destroy()
-  {
-    super.setDurability(0);
-  }
-
-// ***********************
-  //   use() Method
-  //   overrides the IUsable
-  // ***********************  
-
-
-  public boolean use()
-  {
-    return true;
-  }
-
-
-
-
-
-
-
+public class Lumber extends Consumable{
+	private OptimalTool optimalTool;
+	
+	public Lumber(String name, int price, double durability, OptimalTool optimalTool){
+		super(name, price, durability);
+		this.optimalTool = optimalTool;
+	}
+	
+	public Lumber(){
+		super();
+	}
+	
+	public void setOptimalTool(OptimalTool optimalTool){
+		this.optimalTool = optimalTool;
+	}
+	
+	public OptimalTool getOptimalTool(){
+		return optimalTool;
+	}
 }

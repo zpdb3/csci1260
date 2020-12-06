@@ -2,21 +2,16 @@
 // Filename:   Shovel
 // Team:       Big Bois
 // Team Members: Austen Boda, Duncan Hayes, Eric Caton,
-//                               Jason Joyce, and Paul Brummitt
+//                        Jason Joyce, and Paul Brummitt
 // ******
-// The implementation of Shovel will be lead by Paul Brummitt
+// The implementation of Shovel will be lead by Jason Joyce
 
-public class Shovel  {
+public class Shovel extends Tool  {
 
     public Shovel() {
-//        super();
-//        setName("Shovel");
-//        setNormalDamage(8);
-//        setPrice(125);
-//        setOptimalTool(OptimalTool.Shovel);
+        super();
+        setName("Shovel");
     }
 
-//    public Shovel(int dmg, int ice, int fire, WeaponHandedness wp, int price, double durability, double range, int maxAmmo) {
-//        super("Throwing Shovel", dmg, ice, fire, wp, price, durability, range, maxAmmo);
-//    }
+
 }

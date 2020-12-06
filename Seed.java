@@ -1,37 +1,55 @@
-
-
 public class Seed extends Consumable 
 {
 
-  int initialValue=0;
+  private OptimalTool optimalTool;
+  private boolean crowAble;
+  private boolean sheepAble;
 
 
   // ***********************
   //   Constructor for Seed
   //   
-  // ***********************  
-  public Seed()  // Constructor
+  // *********************** 
+
+  public Seed() {
+	super();
+}
+ 
+  public Seed(String name, int price, double durability, OptimalTool optimalTool, boolean crowAble, boolean sheepAble)  // Constructor
     {
-      super("Health Kit",50,1.0); 
+	  super(name,price,durability);
+	  this.optimalTool = optimalTool;
+	  this.crowAble = crowAble;
+	  this.sheepAble = sheepAble;
     }
 
-  // ***********************
-  //   use() Method
-  //   calls Peron's heal() and passes a 5 and returns true if > 0 is received
-  // ***********************  
 
-  public boolean use(Person person)
-  {
-     
-//    return person.heal(5) > 0?true:false;	// ternary operator true does 1st condition
-      return true; 				// remove this line
-  }  
-
-    
-
-//    initialValue = iHitable.heal(5);
+  public OptimalTool getOptimalTool(){
+	  return optimalTool;
+  }
+  
+  public boolean getCrowAble(){
+	  return crowAble;
+  }
+  
+  public void setOptimalTool(OptimalTool optimalTool){
+	  this.optimalTool = optimalTool;
+  }
+  
+  public void setSheepAble(boolean b){
+	  b = sheepAble;
+  }
+  
+  public void setCrowAble(boolean b){
+	  b = crowAble;
+  	  
+  }
 
   
+  public boolean grow(){
+    return true;	  
+  }
+
   
 
 

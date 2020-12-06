@@ -6,17 +6,11 @@
 // ******
 // The implementation of Hoe will be lead by Paul Brummitt
 
-public class Hoe  {
+public class Hoe extends Tool {
 
     public Hoe() {
-//        super();
-//        setName("Hoe");
-//        setNormalDamage(8);
-//        setPrice(125);
-//        setOptimalTool(OptimalTool.Hoe);
+          super();
+          setName("Hoe");
     }
 
-//    public Hoe(int dmg, int ice, int fire, WeaponHandedness wp, int price, double durability, double range, int maxAmmo) {
-//        super("Throwing Hoe", dmg, ice, fire, wp, price, durability, range, maxAmmo);
-//    }
 }

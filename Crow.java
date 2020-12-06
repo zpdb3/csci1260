@@ -1,17 +1,21 @@
 import java.util.ArrayList;
+public class Crow extends Animal{
+	
+	private int maxFear;
+	private int currentFear;
+	
+	public Crow(){
+		super();
+	}
 
-public class Crow extends Person{
-
-    public Crow() {
-        this("Crow");
-    }
-
-    public Crow(String name) {
-        super(name);
-        ArrayList<String> CrowWordSalad = new ArrayList<>();
-        CrowWordSalad.add("Me know nothing about that.  Me simple Crow.");
-        CrowWordSalad.add("Me just sitting here sharpening my sword... Who's buggin' me now?");
-        CrowWordSalad.add("Ohhh!  Lunch delivered itself today!");
-        super.setThingsToSay(CrowWordSalad);
-    }
+	public Crow(String name, int currentFear, int maxFear){
+		super(name);
+		this.currentFear = currentFear;
+		this.maxFear = maxFear;
+		ArrayList<String> crowDialog = new ArrayList<>();
+        crowDialog.add("CAW! CAW! CAW!");
+        crowDialog.add("Crow are very intelligent, I even learned to speak");
+        crowDialog.add("Please don't hurt me... Oops I mean CAW! CAW!");
+		super.setThingsToSay(crowDialog);
+	}
 }

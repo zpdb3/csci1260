@@ -1,222 +1,232 @@
+// ******
+// Filename:   Person
+// Team:       Big Bois
+// Team Members: Austen Boda, Duncan Hayes, Eric Caton,
+//                               Jason Joyce, and Paul Brummitt
+// ******
+// Written by Paul Brummitt
+
 import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class Person {   //implements IHitable, IInventory{
+public abstract class Person implements IInventory{
 
     private String name;
     private ArrayList<String> dialog;
-    private PickAxe pickaxe;
-    private Hoe hoe;
+    private Hammer hammer;
+    private Hoe hoe; 
     private Axe axe;
     private Shovel shovel;
-//    private EquipmentManager inventory;
-    private int maxHealth;
-    private int currentHealth;
+    private EquipmentManager inventory;
+    private GoldPieces gold;
+    private int maxFear;
+    private int currentFear;
 
     public Person(String name) {
-//        this.name = name;
-//        this.maxHealth = 50;
-//        this.currentHealth = 40;
-//	this.thingsToSay = new ArrayList<>();
-//	this.helmet = new Helmet();
-//	this.plackart = new Plackart();
-//	this.weapon = new Weapon();
-//	this.inventory = new EquipmentManager();
+        this.name = name;
+	this.maxFear = 25;
+	this.currentFear = 5;
+	this.dialog = new ArrayList<>();
+	this.hammer = new Hammer();
+	this.hoe = new Hoe();
+	this.axe = new Axe();
+	this.inventory = new EquipmentManager();
+
     }
+
+// ********************************
+// ** talk() Method ***************
+// ********************************
 
     public String talk() {
 
-//        Random rand = new Random();
-//        int rando = rand.nextInt(3);
-//        return thingsToSay.get(rando);
-	  return "";				// remove this line
+        Random rand = new Random();
+        int rando = rand.nextInt(3);
+        return dialog.get(rando);
     }
 
-    public boolean setTool(Equipment e) {
+
+// ********************************
+// ** setTool() Method ***************
+// ********************************
+
+
+    public boolean setTool(Equipment e) {	// sets hammer as the tool to be used
         boolean equipSuccess = false;
-//        if(e instanceof Helmet) {
-//            if(e == null) {
-//                helmet = (Helmet)e;
-//                equipSuccess = true;
-//            }
-//            else {
-//                this.pickup(helmet);
-//                helmet = (Helmet)e;
-//                equipSuccess = true;
-//            }
-//        }
-//        else if(e instanceof Plackart){
-//            if(e == null) {
-//                plackart = (Plackart)e;
-//                equipSuccess = true;
-//            }
-//            else {
-//                this.pickup(plackart);
-//                plackart = (Plackart)e;
-//                equipSuccess = true;
-//            }
-//        }
-//        else if(e instanceof Weapon){
-//            if(e == null) {
-//                weapon = (Weapon)e;
-//                equipSuccess = true;
-//            }
-//            else {
-//                this.pickup(weapon);
-//                weapon = (Weapon)e;
-//                equipSuccess = true;
-//            }
-//        }
+        if(e instanceof Hammer) {             
+            if(e == null) {
+                hammer = (Hammer)e;			
+                equipSuccess = true;
+            }
+            else {
+                this.pickUp(hammer);
+                hammer = (Hammer)e;
+                equipSuccess = true;
+            }
+        }
+
+        else if(e instanceof Hoe){		// sets hoe as the tool to be used
+            if(e == null) {
+                hoe = (Hoe)e;
+                equipSuccess = true;
+            }
+            else {
+                this.pickUp(hoe);
+                hoe = (Hoe)e;
+                equipSuccess = true;
+            }
+        }
+
+        else if(e instanceof Axe){		// sets axe as the tool
+            if(e == null) {
+                axe = (Axe)e;
+                equipSuccess = true;
+            }
+            else {
+                this.pickUp(axe);
+                axe = (Axe)e;
+                equipSuccess = true;
+            }
+        }
+
+
+        else if(e instanceof Shovel){		// sets shovel as the tool
+            if(e == null) {
+                shovel = (Shovel)e;
+                equipSuccess = true;
+            }
+            else {
+                this.pickUp(shovel);
+                shovel = (Shovel)e;
+                equipSuccess = true;
+            }
+        }
 
         return equipSuccess;
     }
 
-//    public int attack(IHitable target) {
-//        int damageDone;
-//        if(this.weapon == null)
-//            damageDone = 0;
-//        else
-//            damageDone = weapon.attack(target);
-//        return damageDone;
-//    }
+// ********************************				
+// ** buyItem() Method *****			
+// ********************************		
 
-//    public String getName() {
-//        return this.name;
-//    }
+    public boolean buyItem(Equipment e, int price) {		// buy an item takes Equipment and Int for price
+        boolean buySuccess = false;
+        if(gold.buyItem(price) == true) {			// calls the buyItem in GoldPieces
+	  this.pickUp(e);
+	  buySuccess = true;
+            
+                        }
+            else {
+	      buySuccess = false;            
+            }
 
-//    public String toString() {
-//        String buildString = "";
-//        buildString += "Name:     " + name + "\n";
-//        buildString += "Health:   " + this.currentHealth + "/" + this.maxHealth + "\n";
-//        buildString += "Helmet:   " + this.helmet.getName() + "\n";
-//        buildString += "Plackart: " + this.plackart.getName() + "\n";
-//        buildString += "Weapon:   " + this.weapon.getName();
-//        return buildString;
-//    }
+	return buySuccess;
 
-//    public ArrayList<String> getThingsToSay() {
-//        return this.thingsToSay;
-//    }
+        }
+	
+// ********************************				
+// ** sellItem() Method *****			
+// ********************************		
+// sell item takes Person, Equipment and Int
 
-    public void setThingsToSay(ArrayList<String> list) {
-//        this.thingsToSay = list;
+    public boolean sellItem(Person p, Equipment e, int price) {	
+        boolean sellSuccess = p.buyItem(e, price);
+        if(sellSuccess) {
+	  gold.sellItem(price);
+	  inventory.removeByEquipment(e);  
+        }
+
+	return sellSuccess;
+
     }
 
-    /*
-     *  Implementation of IHitable
-     */
-
-//    public int getMaxHealth() {
-//        return this.maxHealth;
-//    }
-
-//    public int getCurrentHealth() {
-//        return this.currentHealth;
-//    }
-
-//    public boolean isHitableDestroyed() {
-//        return this.currentHealth <= 0;
-//    }
-
-//    public int takeDamage(int dmg, int fire, int ice) {
-//        int totalDamage = 0;
-
-//        if(helmet != null && helmet.hasFireProtection()){
-//            if(fire != 0)
-//                fire = fire - 3 > 0 ? fire - 3 : 0;
-//        }
-
-//        if(helmet != null && helmet.hasIceProtection()){
-//            if(ice != 0)
-//                ice = ice - 3 > 0 ? ice - 3 : 0;
-//        }
-
-//        if(plackart != null && plackart.hasFireProtection()){
-//            if(fire != 0)
-//                fire = fire - 3 > 0 ? fire - 3 : 0;
-//        }
-
-//        if(plackart != null && plackart.hasIceProtection()){
-//            if(ice != 0)
-//                ice = ice - 3 > 0 ? ice - 3 : 0;
-//        }
-//        totalDamage = dmg + ice + fire;
-
-//        if(helmet != null)
-//            totalDamage -= helmet.getArmorBonus() / 2;
-
-//        if(plackart != null)
-//            totalDamage -= plackart.getArmorBonus() / 2;
-
-//        if(totalDamage < 0)
-//            totalDamage = 0;
-
-//        return totalDamage;
-//    }
-
-//    public int heal(int amt) {
-//        int amtHealed;
-//        amtHealed = this.currentHealth + amt > this.maxHealth ? this.maxHealth - this.currentHealth : amt;
-//        currentHealth += amtHealed;
-//        return amtHealed;
-//    }
-
-    /*
-     *  Implementation of IInventory
-     */
-
-//    public void pickup(Equipment e) {
-//        this.inventory.addEquipment(e);
-//    }
-
-//    public void transferAllEquipmentFrom(IInventory other) {
-//        int count = other.countEquipment();
-//        for(int iterate = 0 ; iterate < count ; iterate++){
-//            this.inventory.pickup(other.getEquipment(iterate));
-//        }
-//        other.dropAllEquipment();
-//    }
-
-//    public int countArmor() {
-//        return inventory.countArmor();
-//    }
-
-//    public int countWeapon() {
-//        return inventory.countWeapon();
-//    }
-
-//    public int countConsumables() {
-//        return inventory.countConsumables();
-//    }
-
-//    public int countEquipment() {
-//        return countArmor() + countWeapon() + countConsumables();
-//    }
-
-//    public String getEquipmentList() {
-//        return this.inventory.getEquipmentList();
-//    }
-
-//    public String getEquipmentInfo(int index) {
-//        return this.inventory.getEquipmentDetails(index);
-//    }
-
-//    public Equipment getEquipment(int index) {
-//        return this.inventory.getEquipment(index);
-//    }
-
- 
-//    public void addEquipment(Equipment equipment) {
-	
-//    }   
 
 
-//    public void dropEquipment(int index) {
-//        this.inventory.removeEquipment(index);
-//    }
+// ********************************				
+// ** fearResponse() Method *****			
+// ********************************		
 
-//    public void dropAllEquipment() {
-//        this.inventory.clearAll();
-//    }
+    public boolean fearResponse(int fear) {
+      currentFear += fear;
+      
+      if (currentFear > (maxFear/2)) {
+
+        return false;
+      }
+      if (currentFear > maxFear) {
+        return true;
+      }
+    return false;
+      
+    }
+
+
+
+// ********************************		
+// ** setDialog() Method *****			
+// ********************************		
+
+    public void setThingsToSay(ArrayList<String> list) {
+        this.dialog = list;
+    }
+
+
+// ********************************		
+// ** pickUp() override Method *****			
+// ********************************		
+
+
+    public void pickUp(Equipment e) {		//comment
+        this.inventory.addEquipment(e);
+    }
+
+// ***** countTools override() Method ***************
+
+    public int countTools() {			//comment
+	return inventory.countTools();
+    }
+
+// ***** countConsumables override() Method ***************
+
+    public int countConsumables() {			//comment
+	return inventory.countConsumables();
+    }
+
+// ***** getEquipmentList override() Method ***************
+
+    public String getEquipmentList() {		//comment
+        return this.inventory.getEquipmentList();
+    }
+
+// ***** getEquipmentInfo override() Method ***************
+
+    public String getEquipmentInfo(int index) {	//comment
+        return this.inventory.getEquipmentDetails(index);
+    }
+
+// ***** getEquipment override() Method ***************
+
+    public Equipment getEquipment(int index) {	//comment
+	return this.inventory.getEquipment(index);
+    }
+
+// ***** dropEquipment override() Method ***************
+
+    public void dropEquipment(int index) {		
+   	this.inventory.removeEquipment(index);
+    }
+
+// ***** dropAllEquipment override() Method ***********
+
+    public void dropAllEquipment(){			
+        this.inventory.clearAllEquipment();
+    }
+
+// ***** addEquipment override() Method ***************
+
+    public void addEquipment(Equipment e){
+	this.inventory.addEquipment(e);
+    }
+
 
 }

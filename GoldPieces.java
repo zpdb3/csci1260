@@ -1,48 +1,40 @@
-  // ***********************
-  //   Class: GoldPieces
-  //   
-  // ***********************  
+public class GoldPieces extends Consumable{
+	
+	private int amount;
 
-public abstract class GoldPieces extends Equipment implements IUsable		 
-{
-
-  // ***********************
-  //   Constructor for GoldPieces
-  //   
-  // ***********************  
-
-  public GoldPieces(String n, int p, double d)  // Constructor
-  {
-    super(n, p, d);
-         
-  }
-
-  // ***********************
-  //   destroy() Method
-  //   sets durability to 0
-  // ***********************  
-
-
-  public void destroy()
-  {
-    super.setDurability(0);
-  }
-
-// ***********************
-  //   use() Method
-  //   overrides the IUsable
-  // ***********************  
-
-
-  public boolean use()
-  {
-    return true;
-  }
-
-
-
-
-
-
-
+	
+	public GoldPieces(String name, int price, double durability, int amount){
+		super(name, price, durability);
+		this.amount = amount;
+	}
+	
+	public GoldPieces(){
+		super();
+		amount = 200;
+	}
+	
+	public int getAmount(){
+		return amount;
+	}
+	
+	public void setAmount(int amount){
+		this.amount = amount;
+	}
+	
+	public boolean buyItem(int price){
+		if(amount>price){
+			amount = amount - price;
+			
+		}
+		if(amount<price){
+			return false;
+		}
+		return true; 
+	}
+	
+	public boolean sellItem(int price){
+		
+		amount = amount + price;
+		return true;
+	}           
 }

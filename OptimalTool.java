@@ -6,12 +6,15 @@
 // ******
 // 
 
-//enum to be used for OptimalTool
 
-  public enum OptimalTool
-  {
-      Axe, Hoe, PickAxe, Shovel
-  }
+// ***********************
+ //   Enumerator: OptimalTool
+ //   
+ // ***********************  
 
+public enum OptimalTool
+{
 
+	Hoe, Hammer, Shovel, Axe;
 
+}

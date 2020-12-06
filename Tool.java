@@ -4,101 +4,94 @@
 // Team Members: Austen Boda, Duncan Hayes, Eric Caton,
 //                               Jason Joyce, and Paul Brummitt
 // ******
-// The implementation of Tool will be lead by Duncan Hayes
+// The implementation of Tool will be lead by Jason Joyce
 
 public class Tool extends Equipment
 {
-  private int normalDamage;             //declares normalDamage as an int
-  private int iceDamage;                //declares iceDamage as an int
-  private int fireDamage;               //declares fireDamage as an int
-  private OptimalTool ToolHand;  //declares OptimalTool
+  private int optimalUseTime;                   //declares optimalUseTime as an int
+  private int subOptimalUseTime;                //declares subOptimalUseTime as an int
+  private double correctUseDegredation;         //declares correctUseDegredation as an double
+  private double incorrectUseDegredation;       //declares incorrectUseDegredation as an double
+  private String optimalUse;                    //delcares optimalUse as a String
 
-  public Tool() {
+
+  public Tool() 
+  {
     super();
   }
 
-  //sets the name, price, durability, damage, fire/ice damage, and the Tool handedness
-  public Tool(String name, int dmg, int ice, int fire, OptimalTool wp, int price, double durability) {  
+  //sets the name, price, durability, optimalUse, subOptimalUseTime, correctUseDegredation, incorrectUseDegredation, optimalUse of the tool
+  public Tool(String name, int price, double durability, int optimalUseTime, int subOptimalUseTime,
+              double correctUseDegredation, double incorrectUseDegredation, String optimalUse)
+  {
     super(name, price, durability);
-    setNormalDamage(dmg);
-    setFireDamage(fire);
-    setIceDamage(ice);
-    setOptimalTool(wp);
-  }
-  
-  //overrides the getName method from equipment to add necessary prefixes/suffixes.
-  public String getName() {            
-    String nameHolder = super.getName();
-    if (iceDamage > 0 && fireDamage > 0)
-      nameHolder += " of Mighty Wrath";
-    else if (fireDamage > 0)
-      nameHolder += "Flaming " + nameHolder;
-    else if (iceDamage > 0)
-      nameHolder += "Frozen " + nameHolder;
-    return nameHolder;
+    setOptimalUseTime(optimalUseTime);
+    setSubOptimalUseTime(subOptimalUseTime);
+    setCorrectUseDegredation(correctUseDegredation);
+    setIncorrectUseDegredation(incorrectUseDegredation);
+    setOptimalUse(optimalUse);
   }
 
-  //returns normalDamage
-  public int getNormalDamage() {      
-    return normalDamage;
+  //returns optimalUseTime
+  public int getOptimalUseTime() 
+  {
+    return optimalUseTime;
   }
 
-  //returns FireDamage
-  public int getFireDamage() {        
-    return fireDamage;
+  //returns subOptimalUseTIme
+  public int getSubOptimalUseTime() 
+  {
+    return subOptimalUseTime;
   }
 
-  //returns IceDamage
-  public int getIceDamage() {         
-    return iceDamage;
+  //returns CorrectUseDegredation
+  public double getCorrectUseDegredation() 
+  {
+    return correctUseDegredation;
   }
 
-  //returns the OptimalTool
-  public OptimalTool getOptimalTool() {     
-    return ToolHand;
+  //returns IncorrectUseDegredation
+  public double getIncorrectUseDegredation() 
+  {
+    return incorrectUseDegredation;
   }
 
-  //sets the NormalDamage for the Tool
-  public void setNormalDamage(int dmg) {              
-    normalDamage = dmg;
+  //returns OptimalUse
+  public String getOptimalUse() 
+  {
+    return optimalUse; 
   }
 
-  //sets the IceDamage for the Tool
-  public void setIceDamage(int dmg) {                 
-    iceDamage = dmg;
+  //sets the OptimalUseTime for the Tool
+  public void setOptimalUseTime(int t) 
+  {
+    optimalUseTime = t;
   }
 
-  //sets the FireDamage for the Tool
-  public void setFireDamage(int dmg) {                
-    fireDamage = dmg;
+  //sets the SubOptimalUseTime for the Tool
+  public void setSubOptimalUseTime(int t) 
+  {
+    subOptimalUseTime = t;
   }
 
-  //sets the Tool Handedness of the Tool
-  public void setOptimalTool(OptimalTool wp) {  
-    ToolHand = wp;
+  //sets the CorrectUseDegredation for the Tool 
+  public void setCorrectUseDegredation(double d) 
+  {
+    correctUseDegredation = d; 
   }
 
-  public String toString() {
-    return ("{name: \"" + super.getName() + "\", price: " + super.getPrice() + ", durability: \"" +
-            super.getDurability() + "\", normal: " + this.getNormalDamage() + ", ice: " + this.getIceDamage() +
-            ", fire: " + this.getFireDamage() + ", OptimalTool: \"" + this.getOptimalTool() + "\"}" );
+  //sets the IncorrectUseDegredation for the Tool 
+  public void setIncorrectUseDegredation(double d) 
+  { 
+    incorrectUseDegredation = d; 
   }
-  
-//  public int attack(IHitable hitable){
-//	int dmgHld;
-//	dmgHld = hitable.takeDamage(getNormalDamage(), getFireDamage(), getIceDamage());
-//	if(hitable.isHitableDestroyed())
-//		System.out.println("Target is destroyed.");
-//	else
-//		System.out.println("Tis only a flesh wound!");
-//	return dmgHld;
-  //}
-  
 
-  public boolean use(Person person){
-//	return person.equip(this);
-	return true;				// remove this line	
+  //sets OptimalUse of the tool
+  public void setOptimalUse(String s) 
+  { 
+    optimalUse = s; 
   }
+
 
 
 
