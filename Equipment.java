@@ -52,17 +52,17 @@ public class Equipment
       price = p;
   }
 
-  public void setDurability(double d) //sets the conditions for what value durability can be within
+  public void setDurability(double d) //sets the conditions for what values durability can fall within
   {
       durability = ((d >= 0) && (d <= 1)) ? d : durability;
   }
 
-  public int getSalePrice() //sets the price of a object of equipment based on conditions
+  public int getSalePrice() //sets the price of a object of equipment based on durability condition
   {
       return (int) (price * (0.30 + durability));
   }
 
-  public void adjustDurability(double d) //when called changes durability of a object of equipment to a set value
+  public void adjustDurability(double d) //changes durability of a object of equipment to a set value
   {
 
       if (d > -1 && d < 1) {
