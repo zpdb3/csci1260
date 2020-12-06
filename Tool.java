@@ -15,7 +15,8 @@ public class Tool extends Equipment
   private String optimalUse;                    //delcares optimalUse as a String
 
 
-  public Tool() {
+  public Tool() 
+  {
     super();
   }
 
