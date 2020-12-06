@@ -1,3 +1,12 @@
+// ******
+// Filename:   Neighbor
+// Team:       Big Bois
+// Team Members: Austen Boda, Duncan Hayes, Eric Caton,
+//                               Jason Joyce, and Paul Brummitt
+// ******
+// Written by Paul Brummitt
+
+
 import java.util.ArrayList;
 
 public class Neighbor extends Person {
@@ -12,10 +21,10 @@ public class Neighbor extends Person {
     public Neighbor(String name, int maxFear, int currentFear) {
         super(name);
         ArrayList<String> neighborWordSalad = new ArrayList<>();
-        neighborWordSalad.add("I used to be an adventurer like you, then I took an arrow to the knee.");
-        neighborWordSalad.add("Help!  Help!  I'm being repressed! Come see the violence inherent in the system!");
-        neighborWordSalad.add("Oh, but you can't expect to wield supreme executive power just because some watery " +
-                "tart threw a sword at you!");
+        neighborWordSalad.add("Been farming long?");
+        neighborWordSalad.add("I guess you'll have to like it or lump it!");
+        neighborWordSalad.add("You might need a doctor every once in a while, but every day ... " +
+                "three times a day, you need a farmer!");
 //        super.setDialog(neighborWordSalad);
     }
 

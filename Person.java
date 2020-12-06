@@ -1,3 +1,11 @@
+// ******
+// Filename:   Person
+// Team:       Big Bois
+// Team Members: Austen Boda, Duncan Hayes, Eric Caton,
+//                               Jason Joyce, and Paul Brummitt
+// ******
+// Written by Paul Brummitt
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -39,11 +47,11 @@ public abstract class Person implements IInventory{
 
 
 // ********************************
-// ** equip() Method ***************
+// ** setTool() Method ***************
 // ********************************
 
 
-    public boolean setTool(Equipment e) {		// equip the hammer here
+    public boolean setTool(Equipment e) {	// sets hammer as the tool to be used
         boolean equipSuccess = false;
         if(e instanceof Hammer) {             
             if(e == null) {
@@ -57,7 +65,7 @@ public abstract class Person implements IInventory{
             }
         }
 
-        else if(e instanceof Hoe){		// equip the hoe here
+        else if(e instanceof Hoe){		// sets hoe as the tool to be used
             if(e == null) {
                 hoe = (Hoe)e;
                 equipSuccess = true;
@@ -69,7 +77,7 @@ public abstract class Person implements IInventory{
             }
         }
 
-        else if(e instanceof Axe){		// equip the axe here
+        else if(e instanceof Axe){		// sets axe as the tool
             if(e == null) {
                 axe = (Axe)e;
                 equipSuccess = true;
@@ -82,7 +90,7 @@ public abstract class Person implements IInventory{
         }
 
 
-        else if(e instanceof Shovel){		// equip the shovel here
+        else if(e instanceof Shovel){		// sets shovel as the tool
             if(e == null) {
                 shovel = (Shovel)e;
                 equipSuccess = true;
@@ -94,19 +102,16 @@ public abstract class Person implements IInventory{
             }
         }
 
-
-
-
         return equipSuccess;
     }
 
-// ********************************		//???		
+// ********************************				
 // ** buyItem() Method *****			
 // ********************************		
 
     public boolean buyItem(Equipment e, int price) {		// buy an item takes Equipment and Int for price
         boolean buySuccess = false;
-        if(gold.buyItem(price) == true) {
+        if(gold.buyItem(price) == true) {			// calls the buyItem in GoldPieces
 	  this.pickUp(e);
 	  buySuccess = true;
             
@@ -119,32 +124,25 @@ public abstract class Person implements IInventory{
 
         }
 	
-
-
-  
-  
-
-
-// ********************************		//???		
+// ********************************				
 // ** sellItem() Method *****			
 // ********************************		
+// sell item takes Person, Equipment and Int
 
-    public boolean sellItem(Person p, Equipment e, int price) {	// sell item takes Person, Equipment and Int
+    public boolean sellItem(Person p, Equipment e, int price) {	
         boolean sellSuccess = p.buyItem(e, price);
         if(sellSuccess) {
 	  gold.sellItem(price);
 	  inventory.removeByEquipment(e);  
-	            
-                        }
-          
+        }
 
 	return sellSuccess;
 
-        }
+    }
 
 
 
-// ********************************		//???		
+// ********************************				
 // ** fearResponse() Method *****			
 // ********************************		
 
@@ -152,7 +150,7 @@ public abstract class Person implements IInventory{
       currentFear += fear;
       
       if (currentFear > (maxFear/2)) {
-        // make new arrayList of comments
+
         return false;
       }
       if (currentFear > maxFear) {
@@ -174,43 +172,61 @@ public abstract class Person implements IInventory{
 
 
 // ********************************		
-// ** pickUp() Method *****			
+// ** pickUp() override Method *****			
 // ********************************		
+
 
     public void pickUp(Equipment e) {		//comment
         this.inventory.addEquipment(e);
     }
 
-  public int countTools() {			//comment
+// ***** countTools override() Method ***************
+
+    public int countTools() {			//comment
 	return inventory.countTools();
-}
+    }
 
-public int countConsumables() {			//comment
+// ***** countConsumables override() Method ***************
+
+    public int countConsumables() {			//comment
 	return inventory.countConsumables();
-}
+    }
 
-public String getEquipmentList() {		//comment
+// ***** getEquipmentList override() Method ***************
+
+    public String getEquipmentList() {		//comment
         return this.inventory.getEquipmentList();
-}
+    }
 
-public String getEquipmentInfo(int index) {	//comment
+// ***** getEquipmentInfo override() Method ***************
+
+    public String getEquipmentInfo(int index) {	//comment
         return this.inventory.getEquipmentDetails(index);
-}
+    }
 
-public Equipment getEquipment(int index) {	//comment
+// ***** getEquipment override() Method ***************
+
+    public Equipment getEquipment(int index) {	//comment
 	return this.inventory.getEquipment(index);
-}
+    }
 
-public void dropEquipment(int index) {		//comment
-  this.inventory.removeEquipment(index);
-}
+// ***** dropEquipment override() Method ***************
 
-public void dropAllEquipment(){			//comment
+    public void dropEquipment(int index) {		
+   	this.inventory.removeEquipment(index);
+    }
+
+// ***** dropAllEquipment override() Method ***********
+
+    public void dropAllEquipment(){			
         this.inventory.clearAllEquipment();
-}
+    }
 
-public void addEquipment(Equipment e){
-}
+// ***** addEquipment override() Method ***************
+
+    public void addEquipment(Equipment e){
+	this.inventory.addEquipment(e);
+    }
 
 
 }
