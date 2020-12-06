@@ -4,7 +4,7 @@
 // Team Members: Austen Boda, Duncan Hayes, Eric Caton,
 //                               Jason Joyce, and Paul Brummitt
 // ******
-// The implementation of Tool will be lead by Duncan Hayes
+// The implementation of Tool will be lead by Jason Joyce
 
 public class Tool extends Equipment
 {
@@ -19,7 +19,7 @@ public class Tool extends Equipment
     super();
   }
 
-  //sets the name, price, durability, optimalUse, subOptimalUseTime, correctUseDegredation, incorrectUseDegredation, optimalUse
+  //sets the name, price, durability, optimalUse, subOptimalUseTime, correctUseDegredation, incorrectUseDegredation, optimalUse of the tool
   public Tool(String name, int price, double durability, int optimalUseTime, int subOptimalUseTime,
               double correctUseDegredation, double incorrectUseDegredation, String optimalUse)
   {
@@ -32,45 +32,64 @@ public class Tool extends Equipment
   }
 
   //returns optimalUseTime
-  public int getOptimalUseTime() {
+  public int getOptimalUseTime() 
+  {
     return optimalUseTime;
   }
 
   //returns subOptimalUseTIme
-  public int getSubOptimalUseTime() {
+  public int getSubOptimalUseTime() 
+  {
     return subOptimalUseTime;
   }
 
   //returns CorrectUseDegredation
-  public double getCorrectUseDegredation() {
+  public double getCorrectUseDegredation() 
+  {
     return correctUseDegredation;
   }
 
   //returns IncorrectUseDegredation
-  public double getIncorrectUseDegredation() {
+  public double getIncorrectUseDegredation() 
+  {
     return incorrectUseDegredation;
   }
 
   //returns OptimalUse
-  public String getOptimalUse() {return optimalUse; }
+  public String getOptimalUse() 
+  {
+    return optimalUse; 
+  }
 
-  //sets the NormalDamage for the Tool
-  public void setOptimalUseTime(int t) {
+  //sets the OptimalUseTime for the Tool
+  public void setOptimalUseTime(int t) 
+  {
     optimalUseTime = t;
   }
 
-  //sets the IceDamage for the Tool
-  public void setSubOptimalUseTime(int t) {
+  //sets the SubOptimalUseTime for the Tool
+  public void setSubOptimalUseTime(int t) 
+  {
     subOptimalUseTime = t;
   }
 
-  //sets the CorrectUseDegredation for the Tool
-  public void setCorrectUseDegredation(double d) {correctUseDegredation = d; }
+  //sets the CorrectUseDegredation for the Tool 
+  public void setCorrectUseDegredation(double d) 
+  {
+    correctUseDegredation = d; 
+  }
 
-  //sets the IncorrectUseDegredation for the Tool
-  public void setIncorrectUseDegredation(double d) { incorrectUseDegredation = d; }
+  //sets the IncorrectUseDegredation for the Tool 
+  public void setIncorrectUseDegredation(double d) 
+  { 
+    incorrectUseDegredation = d; 
+  }
 
-  public void setOptimalUse(String s) { optimalUse = s; }
+  //sets OptimalUse of the tool
+  public void setOptimalUse(String s) 
+  { 
+    optimalUse = s; 
+  }
 
 
 
