@@ -109,6 +109,79 @@ public class EquipmentManager implements IInventory
 	return consumableCount; 
   }
 
+// ***         countIron            ***
+// *** looks for instance of iron   ***
+// *** and returns a count for iron ***
+
+  public int countIron()
+  {
+	int ironCount =0;
+	for(int i=0; i<equipment.size(); i++)
+	{
+		if(equipment.get(i) instanceof Iron)
+		{
+			ironCount++;
+		}
+	}
+	return ironCount; 
+  }
+
+
+// ***         countGold            ***
+// *** looks for instance of Gold   ***
+// *** and returns a count for Gold ***
+
+  public int countGold()
+  {
+	int goldCount =0;
+	for(int i=0; i<equipment.size(); i++)
+	{
+		if(equipment.get(i) instanceof Gold)
+		{
+			goldCount++;
+		}
+	}
+	return goldCount; 
+  }
+
+
+// ***         countLumber          ***
+// *** looks for instance of lumber ***
+// *** and returns count for lumber ***
+
+  public int countLumber()
+  {
+	int lumberCount =0;
+	for(int i=0; i<equipment.size(); i++)
+	{
+		if(equipment.get(i) instanceof Lumber)
+		{
+			lumberCount++;
+		}
+	}
+	return lumberCount; 
+  }
+
+
+// ***         countSeed            ***
+// *** looks for instance of seed   ***
+// *** and returns a count for seed ***
+
+  public int countSeed()
+  {
+	int seedCount =0;
+	for(int i=0; i<equipment.size(); i++)
+	{
+		if(equipment.get(i) instanceof Seed)
+		{
+			seedCount++;
+		}
+	}
+	return seedCount; 
+  }
+
+
+
 
 // *** override countEquipment in IInventory ***
 
