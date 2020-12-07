@@ -237,10 +237,12 @@ public class World {
                 worldMap.get(currentIndex).addBack(e);
                 setActions(actions++);
                 return "It would not be a good idea to swing an axe around in here.";
+            } else if (e != null) {
+                worldMap.get(currentIndex).addBack(e);
+                setActions(actions++);
+                return "You do not have anything you can use to harvest lumber.";
             }
-            worldMap.get(currentIndex).addBack(e);
-            setActions(actions++);
-            return "You do not have anything you can use to harvest lumber.";
+            return "There is no more lumber to gather.";
         }
         setActions(actions++);
         return "You need to rest.";
@@ -269,10 +271,12 @@ public class World {
                 worldMap.get(currentIndex).addBack(e);
                 setActions(actions++);
                 return "It would not be a good idea to swing a hoe around in here.";
+            } else if (e != null) {
+                worldMap.get(currentIndex).addBack(e);
+                setActions(actions++);
+                return "You do not have anything you can use to harvest seed.";
             }
-            worldMap.get(currentIndex).addBack(e);
-            setActions(actions++);
-            return "You do not have anything you can use to harvest seed.";
+            return "There are no more seeds around.";
         }
         setActions(actions++);
         return "You need to rest";
@@ -301,10 +305,12 @@ public class World {
                 worldMap.get(currentIndex).addBack(e);
                 setActions(actions++);
                 return "It would not be a good idea to swing a shovel around in here.";
+            } else if (e != null) {
+                setActions(actions++);
+                worldMap.get(currentIndex).addBack(e);
+                return "You do not have anything you can use to collect ore.";
             }
-            setActions(actions++);
-            worldMap.get(currentIndex).addBack(e);
-            return "You do not have anything you can use to collect ore.";
+            return "There is no more ore to be mined.";
         }
         setActions(actions++);
         return "You need to rest";
@@ -358,12 +364,19 @@ public class World {
                 player.dropEquipment(lumberIndex);
                 player.useHammer();
                 return worldMap.get(currentIndex).improve();
+            } else {
+                setActions(actions++);
+                return "You do not have the material to improve this area.";
             }
-            setActions(actions++);
-            return "You do not have the material to improve this area.";
         }
-        setActions(actions++);
-        return "You are not capable of improving this area any further.";
+        if(!worldMap.get(currentIndex).checkIfImproved()) {
+            setActions(actions++);
+            return "You are not capable of improving this area any further.";
+        }
+        else {
+            setActions(actions++);
+            return "You need to rest.";
+        }
     }
 
     public String rest() {

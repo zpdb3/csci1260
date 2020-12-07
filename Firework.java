@@ -14,6 +14,7 @@ public class Firework extends Consumable{
 	public Firework(int amount){
 		super("Firework", 20, 3);
 		fearLevel = 5;
+		this.amount = amount;
 	}
 
 	public int getAmount() {

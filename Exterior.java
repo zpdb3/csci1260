@@ -50,6 +50,7 @@ public abstract class Exterior implements IArea {
         lumberAL = new ArrayList<Lumber>();
         oreAL = new ArrayList<Ore>();
         pickUpableAL = new ArrayList<Equipment>();
+        improved = false;
     }
 
     public void setName(String name){

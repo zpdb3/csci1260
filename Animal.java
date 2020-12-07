@@ -17,7 +17,7 @@ public abstract class Animal implements IInventory{
 	
 	public String talk(){
 		Random rand = new Random();
-        int randomNum = rand.nextInt(dialog.size()-1);
+        int randomNum = rand.nextInt(3);
         return dialog.get(randomNum);
 	}
 	

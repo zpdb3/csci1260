@@ -15,6 +15,7 @@ public class Window extends JFrame implements ActionListener {
 
     private JFrame worldf;
     private JFrame areaf;
+    private JFrame endGamef;
     private JLabel imageLabel;
     private ArrayList<JButton> buttonAL;
     private JTextArea worldTextArea;
@@ -23,6 +24,7 @@ public class Window extends JFrame implements ActionListener {
     private JTextArea areaTextArea;
     private JLabel dayLabel1;
     private JLabel actionLabel1;
+    private JTextArea endGameTextArea;
     private JButton axeB;
     private JButton hoeB;
     private JButton shovelB;
@@ -33,18 +35,22 @@ public class Window extends JFrame implements ActionListener {
     private JButton backToWorldB;
     private JButton restB;
     private JButton repairB;
+    private JButton exitB;
     private Icon icon;
 
     private World world;
+    private boolean gameOver;
 
     Image image;
     BufferedImage scaledImage;
 
     Window(){
 
+        gameOver = false;
         world = new World();
-        worldf = new JFrame();
-        areaf = new JFrame();
+        worldf = new JFrame("World Map");
+        areaf = new JFrame("Area");
+        endGamef = new JFrame("This is the end");
         JButton b;
         buttonAL = new ArrayList<JButton>();
         int count = 0;
@@ -60,7 +66,10 @@ public class Window extends JFrame implements ActionListener {
                 buttonAL.add(b);
             }
         }
-        worldTextArea = new JTextArea("World Information");
+        worldTextArea = new JTextArea("Welcome to Farm game explore the space a little, make sure to gather resources" +
+                "and improve your surroundings!  Also keep an eye on your actions and days left.  Have fun neighbor!");
+        worldTextArea.setLineWrap(true);
+        worldTextArea.setWrapStyleWord(true);
         worldTextArea.setEditable(false);
         worldTextArea.setOpaque(true);
         worldTextArea.setBackground(Color.GRAY);
@@ -82,10 +91,36 @@ public class Window extends JFrame implements ActionListener {
         worldf.setSize(810, 650);
         worldf.setLayout(null);
         worldf.getContentPane().setBackground(Color.DARK_GRAY);
+        worldf.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         worldf.setVisible(true);
 
+        endGamef.setSize(180, 180);
+        endGamef.setLayout(null);
+        endGamef.getContentPane().setBackground(Color.DARK_GRAY);
+        endGamef.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        endGamef.setVisible(false);
 
-        areaTextArea = new JTextArea("Area Information");
+        endGameTextArea = new JTextArea();
+        endGameTextArea.setLineWrap(true);
+        endGameTextArea.setWrapStyleWord(true);
+        endGameTextArea.setAlignmentX(CENTER_ALIGNMENT);
+        endGameTextArea.setAlignmentY(CENTER_ALIGNMENT);
+        endGameTextArea.setEditable(false);
+        endGameTextArea.setOpaque(false);
+        endGameTextArea.setBackground(Color.GRAY);
+        endGameTextArea.setBounds(15, 15, 150, 90);
+        endGamef.add(endGameTextArea);
+
+        exitB = new JButton("Exit Game");
+        exitB.setOpaque(false);
+        exitB.setBackground(Color.GRAY);
+        exitB.setBounds(40, 120, 100, 30);
+        exitB.addActionListener(this);
+        endGamef.add(exitB);
+
+        areaTextArea = new JTextArea("");
+        areaTextArea.setLineWrap(true);
+        areaTextArea.setWrapStyleWord(true);
         areaTextArea.setEditable(false);
         areaTextArea.setOpaque(true);
         areaTextArea.setBackground(Color.GRAY);
@@ -168,13 +203,23 @@ public class Window extends JFrame implements ActionListener {
         areaf.setSize(810, 650);
         areaf.setLayout(null);
         areaf.getContentPane().setBackground(Color.DARK_GRAY);
+        areaf.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         areaf.setVisible(false);
 
 
     }
 
     public void actionPerformed(ActionEvent e){
-
+        gameOver = world.checkGameOver();
+        if(gameOver) {
+            worldf.setVisible(false);
+            areaf.setVisible(false);
+            endGamef.setVisible(true);
+            endGameTextArea.setText(world.getScore());
+            if(exitB == e.getSource()) {
+                System.exit(0);
+            }
+        }
         if(worldf.isVisible()){
             worldf.setVisible(false);
             if(buttonAL.get(0) == e.getSource()){
@@ -197,7 +242,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(1) == e.getSource()){
@@ -220,7 +265,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(2) == e.getSource()){
@@ -243,7 +288,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(3) == e.getSource()){
@@ -266,7 +311,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(4) == e.getSource()){
@@ -289,7 +334,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(5) == e.getSource()){
@@ -312,7 +357,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(6) == e.getSource()){
@@ -335,7 +380,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(7) == e.getSource()){
@@ -358,7 +403,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(8) == e.getSource()){
@@ -381,7 +426,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(9) == e.getSource()){
@@ -404,7 +449,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(10) == e.getSource()){
@@ -427,7 +472,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(11) == e.getSource()){
@@ -450,7 +495,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(12) == e.getSource()){
@@ -473,7 +518,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(13) == e.getSource()){
@@ -496,7 +541,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(14) == e.getSource()){
@@ -519,7 +564,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(15) == e.getSource()){
@@ -542,7 +587,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(16) == e.getSource()){
@@ -565,7 +610,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(17) == e.getSource()){
@@ -588,7 +633,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(18) == e.getSource()){
@@ -611,7 +656,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(19) == e.getSource()){
@@ -634,7 +679,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(20) == e.getSource()){
@@ -657,7 +702,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(21) == e.getSource()){
@@ -680,7 +725,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(22) == e.getSource()){
@@ -703,7 +748,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(23) == e.getSource()){
@@ -726,7 +771,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             if(buttonAL.get(24) == e.getSource()){
@@ -749,7 +794,7 @@ public class Window extends JFrame implements ActionListener {
                     areaf.setVisible(false);
                     worldf.setVisible(false);
                 }
-
+                areaTextArea.setText(world.worldMap.get(world.getCurrentIndex()).getDescription());
                 areaf.update(imageLabel.getGraphics());
             }
             areaf.setVisible(true);
