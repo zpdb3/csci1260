@@ -12,12 +12,12 @@ import java.util.ArrayList;
 
 public class World {
 
-    private HashMap<Integer, IArea> worldMap;
+    public HashMap<Integer, IArea> worldMap;
     private int currentIndex;
     private String loadPath;
     private int actions;
     private int days;
-
+    private Player player;
     private ArrayList<Structure> potentialStructures;
     private ArrayList<Forest> potentialForests;
     private ArrayList<Mine> potentialMines;
@@ -30,6 +30,7 @@ public class World {
         currentIndex = 12;
         actions = 10;
         days = 14;
+        player = new Player();
         worldMap.put(currentIndex, loadStartingArea(loadPath));
 
         for (int count = 0; count < 25; count++) {
@@ -53,6 +54,7 @@ public class World {
         this.loadPath = loadPath;
         actions = 10;
         days = 14;
+        player = new Player();
         worldMap.put(currentIndex, loadStartingArea(loadPath));
 
         for (int count = 0; count < 25; count++) {
@@ -212,40 +214,179 @@ public class World {
         }
     }// end IArea createRandomArea()
 
-    public boolean chop() {
-        return true;
+    public String chop() {
+        if(updateActions()) {
+            Equipment e = worldMap.get(currentIndex).chop();
+            if (e != null && player.axeEquipped()) {
+                player.useAxe(e);
+                player.addEquipment(e);
+                return "You chop a tree with your axe and add the lumber to your inventory.";
+            } else if (e != null && player.shovelEquipped()) {
+                player.useShovel(e);
+                player.addEquipment(e);
+                return "You use your shovel to chop down a tree, not the best use of it, but you do not have an axe.  You add the lumber to your inventory.";
+            } else if (e != null && player.hoeEquipped()) {
+                player.useHoe(e);
+                player.addEquipment(e);
+                return "You use your hoe to get the tree down, terrible use of it, but you do not have an axe.  You add the lumber to your inventory.";
+            } else if (e != null && player.hammerEquipped()) {
+                player.useHammer();
+                player.addEquipment(e);
+                return "You use your hammer on the tree and eventually bring it down, not efficient at all, but you do not have an axe.  You add the lumber to your inventory.";
+            } else if (worldMap.get(currentIndex) instanceof Structure) {
+                worldMap.get(currentIndex).addBack(e);
+                setActions(actions++);
+                return "It would not be a good idea to swing an axe around in here.";
+            } else if (e != null) {
+                worldMap.get(currentIndex).addBack(e);
+                setActions(actions++);
+                return "You do not have anything you can use to harvest lumber.";
+            }
+            return "There is no more lumber to gather.";
+        }
+        setActions(actions++);
+        return "You need to rest.";
     }
 
-    public boolean farm() {
-        return true;
+    public String farm() {
+        if (updateActions()) {
+            Equipment e = worldMap.get(currentIndex).farm();
+            if (e != null && player.hoeEquipped()) {
+                player.useHoe(e);
+                player.addEquipment(e);
+                return "You dig up some seeds with your hoe and add them to your inventory.";
+            } else if (e != null && player.shovelEquipped()) {
+                player.useShovel(e);
+                player.addEquipment(e);
+                return "You use your shovel to dig up some seeds, not the best use of it, but you do not have a hoe.  You add the seed to your inventory.";
+            } else if (e != null && player.axeEquipped()) {
+                player.useAxe(e);
+                player.addEquipment(e);
+                return "You use your axe on the soil and eventually find some seed, terrible use of it, but you do not have a hoe.  You add the seed to your inventory.";
+            } else if (e != null && player.hammerEquipped()) {
+                player.useHammer();
+                player.addEquipment(e);
+                return "You use your hammer on the soil and eventually find some seed, not efficient at all, but you do not have a hoe.  You add the seed to your inventory.";
+            } else if (worldMap.get(currentIndex) instanceof Structure) {
+                worldMap.get(currentIndex).addBack(e);
+                setActions(actions++);
+                return "It would not be a good idea to swing a hoe around in here.";
+            } else if (e != null) {
+                worldMap.get(currentIndex).addBack(e);
+                setActions(actions++);
+                return "You do not have anything you can use to harvest seed.";
+            }
+            return "There are no more seeds around.";
+        }
+        setActions(actions++);
+        return "You need to rest";
     }
 
-    public boolean mine() {
-        return true;
+    public String mine() {
+        if(updateActions()) {
+            Equipment e = worldMap.get(currentIndex).mine();
+            if (e != null && player.shovelEquipped()) {
+                player.useShovel(e);
+                player.addEquipment(e);
+                return "You dig up some ore with your shovel and add them to your inventory.";
+            } else if (e != null && player.hoeEquipped()) {
+                player.useHoe(e);
+                player.addEquipment(e);
+                return "You use your hoe to dig up some ore, not the best use of it, but you do not have a shovel.  You add the ore to your inventory.";
+            } else if (e != null && player.axeEquipped()) {
+                player.useAxe(e);
+                player.addEquipment(e);
+                return "You use your axe on the rock and eventually find some ore, terrible use of it, but you do not have a shovel.  You add the ore to your inventory.";
+            } else if (e != null && player.hammerEquipped()) {
+                player.useHammer();
+                player.addEquipment(e);
+                return "You use your hammer on the rock and eventually find some ore, not efficient at all, but you do not have a shovel.  You add the ore to your inventory.";
+            } else if (worldMap.get(currentIndex) instanceof Structure) {
+                worldMap.get(currentIndex).addBack(e);
+                setActions(actions++);
+                return "It would not be a good idea to swing a shovel around in here.";
+            } else if (e != null) {
+                setActions(actions++);
+                worldMap.get(currentIndex).addBack(e);
+                return "You do not have anything you can use to collect ore.";
+            }
+            return "There is no more ore to be mined.";
+        }
+        setActions(actions++);
+        return "You need to rest";
     }
 
-    public boolean scareCrow() {
-        return true;
+    public String scareCrow() {
+        int index = player.findEquipment("scarecrow");
+        if(index != -1) {
+           String saying = worldMap.get(currentIndex).scareCrow((Scarecrow) player.getEquipment(index));
+           player.dropEquipment(index);
+           return saying;
+        }
+        else
+            return "You do not have a scarecrow to place.";
     }
 
-    public boolean firework() {
-        return true;
+    public String firework() {
+        int index = player.findEquipment("firework");
+        return worldMap.get(currentIndex).firework((Firework) player.getEquipment(index));
     }
 
-    public boolean talk() {
-        return true;
+    public String talk() {
+        return worldMap.get(currentIndex).talk();
     }
 
-    public boolean pickUp() {
-        return true;
+    public String pickUp() {
+        if(updateActions()) {
+            if(worldMap.get(currentIndex).hasEquipment()) {
+                for (Equipment e : worldMap.get(currentIndex).pickUp()) {
+                    player.addEquipment(e);
+                }
+                return "You have picked up all the loose items laying around.";
+            }
+            setActions(actions++);
+            return "There is nothing to pick up.";
+        }
+        setActions(actions++);
+        return "You need to rest.";
     }
 
-    public boolean hammer() {
-        return true;
+    public String hammer() {
+        if(updateActions() && !worldMap.get(currentIndex).checkIfImproved()) {
+            int lumberIndex = player.findEquipment("lumber");
+            int ironIndex = player.findEquipment("iron");
+            int goldIndex = player.findEquipment("gold");
+            if (goldIndex != -1 && ironIndex != -1 && lumberIndex != -1) {
+                player.dropEquipment(goldIndex);
+                ironIndex = player.findEquipment("iron");
+                player.dropEquipment(ironIndex);
+                lumberIndex = player.findEquipment("lumber");
+                player.dropEquipment(lumberIndex);
+                player.useHammer();
+                return worldMap.get(currentIndex).improve();
+            } else {
+                setActions(actions++);
+                return "You do not have the material to improve this area.";
+            }
+        }
+        if(!worldMap.get(currentIndex).checkIfImproved()) {
+            setActions(actions++);
+            return "You are not capable of improving this area any further.";
+        }
+        else {
+            setActions(actions++);
+            return "You need to rest.";
+        }
     }
 
-    public boolean rest() {
-        return true;
+    public String rest() {
+        if(updateDays()) {
+            setActions(worldMap.get(currentIndex).rest());
+            return "";
+        }
+        else {
+            return getScore();
+        }
     }
 
     public void setCurrentIndex(int newIndex) { currentIndex = newIndex; }
@@ -269,16 +410,12 @@ public class World {
     }
 
     public boolean updateActions() {
-        if(actions - 1 == 0 && days == 0) {
+        if(actions > 0) {
             actions--;
             return true;
-        }
-        else if(actions -1 == 0 && days >= 1) {
-            return false;
         }
         else {
-            actions--;
-            return true;
+            return false;
         }
     }
 
@@ -290,5 +427,32 @@ public class World {
         else {
             return false;
         }
+    }
+
+    public String getScore() {
+        int areaImproved = 0;
+        int scarecrowCount = 0;
+        int ironCount = player.countIron();
+        int goldCount = player.countGold();
+        int lumberCount = player.countLumber();
+        int seedCount = player.countSeed();
+
+        for(int count = 0; count < 25; count++) {
+            if(worldMap.get(count).checkIfImproved())
+                areaImproved++;
+            if(worldMap.get(count).getHasScarecrow() && worldMap.get(count) instanceof Field);
+                scarecrowCount++;
+        }
+
+        int totalScore = ironCount + seedCount + lumberCount + (goldCount * 2) + (scarecrowCount * 10) + (areaImproved * 10);
+
+        return "You have achieved a total score of:  " + totalScore;
+    }
+
+    public boolean checkGameOver() {
+        if(!hasDays() && !hasActions()) {
+            return true;
+        }
+        return false;
     }
 }// end World Class

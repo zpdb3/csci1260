@@ -4,6 +4,8 @@
  *  Version 1.0 last updated Nov 29, 2020
  */
 
+import java.util.ArrayList;
+
 public interface IArea {
 
     public void populateArea();
@@ -18,6 +20,22 @@ public interface IArea {
     public void seedArea(int min, String prefType);
     public String generateName();
     public String generateDescription(String name);
+    public Equipment chop();
+    public Equipment farm();
+    public Equipment mine();
+    public boolean getHasScarecrow();
+    public String scareCrow(Scarecrow s);
+    public String firework(Firework f);
+    public String talk();
+    public ArrayList<Equipment> pickUp();
+    public int rest();
     public boolean checkIfImproved();
-    public void improve(boolean improved);
+    public String improve();
+    public void addBack(Equipment e);
+    public boolean hasEquipment();
+    public String getName();
+    public String getIconPath();
+    public String getImagePath();
+    public String getType();
+    public String getDescription();
 }

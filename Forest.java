@@ -205,4 +205,10 @@ public class Forest extends Exterior {
         }
         return description;
     }
+
+    public String improve() {
+        setImproved(true);
+        concatDescription("  There is a nice new saw mill in the forest.");
+        return "You make a small sawmill in the area.";
+    }
 }

@@ -22,7 +22,7 @@ public class Structure implements IArea {
     private ArrayList<Seed> seedAL;
     private ArrayList<Lumber> lumberAL;
     private ArrayList<Ore> oreAL;
-    private ArrayList<Equipment> pickUpable;
+    private ArrayList<Equipment> pickUpableAL;
 
     public Structure(){
         String name = generateName();
@@ -38,7 +38,7 @@ public class Structure implements IArea {
         seedAL = new ArrayList<Seed>();
         lumberAL = new ArrayList<Lumber>();
         oreAL = new ArrayList<Ore>();
-        pickUpable = new ArrayList<Equipment>();
+        pickUpableAL = new ArrayList<Equipment>();
         if(name.equalsIgnoreCase("warehouse")){
             imagePath = "warehouse.png";
             mineralArea();
@@ -71,7 +71,7 @@ public class Structure implements IArea {
         seedAL = new ArrayList<Seed>();
         lumberAL = new ArrayList<Lumber>();
         oreAL = new ArrayList<Ore>();
-        pickUpable = new ArrayList<Equipment>();
+        pickUpableAL = new ArrayList<Equipment>();
         if(name.equalsIgnoreCase("warehouse")){
             mineralArea(minOre, prefOre);
             lumberArea(minLumber);
@@ -124,19 +124,19 @@ public class Structure implements IArea {
 
     public void setOreAL(ArrayList<Ore> ore) { oreAL = ore; }
 
-    public void setPickUpable(ArrayList<Equipment> equipment) { pickUpable = equipment; }
+    public void setPickUpable(ArrayList<Equipment> equipment) { pickUpableAL = equipment; }
 
-    public boolean hasPerson() { return personAL.isEmpty(); }
+    public boolean hasPerson() { return !personAL.isEmpty(); }
 
-    public boolean hasAnimal() { return animalAL.isEmpty(); }
+    public boolean hasAnimal() { return !animalAL.isEmpty(); }
 
-    public boolean hasSeed() { return seedAL.isEmpty(); }
+    public boolean hasSeed() { return !seedAL.isEmpty(); }
 
-    public boolean hasLumber() { return lumberAL.isEmpty(); }
+    public boolean hasLumber() { return !lumberAL.isEmpty(); }
 
-    public boolean hasOre() { return oreAL.isEmpty(); }
+    public boolean hasOre() { return !oreAL.isEmpty(); }
 
-    public boolean hasEquipment() { return pickUpable.isEmpty(); }
+    public boolean hasEquipment() { return !pickUpableAL.isEmpty(); }
 
     public void populateArea() {
         Random dice = new Random();
@@ -282,11 +282,84 @@ public class Structure implements IArea {
         return description;
     }
 
+    public Equipment chop() {
+        return null;
+    }
+
+    public Equipment farm() {
+        return null;
+    }
+
+    public Equipment mine() {
+        return null;
+    }
+
+    public String scareCrow(Scarecrow s) {
+        if(getHasScarecrow()) {
+            return "This area already has a scarecrow.";
+        }
+        else {
+            return "It would be useless to place a scarecrow here";
+        }
+    }
+
+    public String firework(Firework f) {
+        if(f.getAmount() == 0) {
+            return "You don't have any fireworks on you.";
+        }
+        else {
+            return "It seems like a bad place to use fireworks...";
+        }
+    }
+
+    public String talk() {
+        if(hasPerson()) {
+            Random dice = new Random();
+            return personAL.get(dice.nextInt(personAL.size())).talk();
+        }
+        else if (hasAnimal()) {
+            Random dice = new Random();
+            return animalAL.get(dice.nextInt(animalAL.size())).talk();
+        }
+        return "There is no one here to talk to.";
+    }
+
+    public ArrayList<Equipment> pickUp() {
+        ArrayList<Equipment> hold = new ArrayList<Equipment>();
+        for(Equipment e : pickUpableAL)
+            hold.add(e);
+        for(Equipment e : lumberAL)
+            hold.add(e);
+        for(Equipment e : oreAL)
+            hold.add(e);
+        for(Equipment e : seedAL)
+            hold.add(e);
+        return hold;
+    }
+
+    public int rest() {
+        if(getName().equalsIgnoreCase("Farmers Only Inn") || getName().equalsIgnoreCase("Cozy Inn"))
+            return 15;
+        else
+            return 12;
+    }
+
     public boolean checkIfImproved() {
         return improved;
     }
 
-    public void improve(boolean improved) {
+    public String improve() {
+        setImproved(true);
+        description += "  The walls look to be recently repaired and there is a new well outside.";
+        return "You patch some walls and install a new well.";
+    }
 
+    public void addBack(Equipment e) {
+        if(e instanceof Lumber)
+            lumberAL.add((Lumber) e);
+        if(e instanceof Ore)
+            oreAL.add((Ore) e);
+        if(e instanceof Seed)
+            seedAL.add((Seed) e);
     }
 }

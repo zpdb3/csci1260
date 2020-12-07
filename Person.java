@@ -25,13 +25,11 @@ public abstract class Person implements IInventory{
     public Person(String name) {
         this.name = name;
 	this.maxFear = 25;
-	this.currentFear = 5;
-	this.dialog = new ArrayList<>();
+	this.currentFear = 5;;
 	this.hammer = new Hammer();
 	this.hoe = new Hoe();
 	this.axe = new Axe();
 	this.inventory = new EquipmentManager();
-
     }
 
 // ********************************
@@ -228,5 +226,77 @@ public abstract class Person implements IInventory{
 	this.inventory.addEquipment(e);
     }
 
+    public void useShovel(Equipment e) {
+        if(e instanceof Ore)
+            shovel.adjustDurability(-.01);
+        else
+            shovel.adjustDurability(-.05);
+    }
 
+    public void useAxe(Equipment e) {
+        if(e instanceof Lumber)
+            axe.adjustDurability(-.01);
+        else
+            axe.adjustDurability(-.05);
+    }
+
+    public void useHammer() {
+        hammer.adjustDurability(-.05);
+    }
+
+    public void useHoe(Equipment e) {
+        if(e instanceof Seed)
+            hoe.adjustDurability(-.01);
+        else
+            hoe.adjustDurability(-.5);
+    }
+
+    public boolean shovelEquipped() {
+        return shovel != null;
+    }
+
+    public boolean hoeEquipped() {
+        return hoe != null;
+    }
+
+    public boolean hammerEquipped() {
+        return hammer != null;
+    }
+
+    public boolean axeEquipped() {
+        return axe != null;
+    }
+
+    public int countSeed(){
+        return inventory.countSeed();
+    }
+
+    public int countIron(){
+        return inventory.countIron();
+    }
+
+    public int countGold(){
+        return inventory.countGold();
+    }
+
+    public int countLumber(){
+        return inventory.countLumber();
+    }
+
+    public int findEquipment(String s) {
+        switch (s) {
+            case "lumber":
+                return inventory.getLumberIndex();
+            case "seed":
+                return inventory.getSeedIndex();
+            case "gold":
+                return inventory.getGoldIndex();
+            case "iron":
+                return inventory.getIronIndex();
+            case "firework":
+                return inventory.getFireworkIndex();
+            default:
+                return -1;
+        }
+    }
 }

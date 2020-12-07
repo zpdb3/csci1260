@@ -200,7 +200,9 @@ public class Mine extends Exterior {
         return description;
     }
 
-    public void improve(boolean improved){
-
+    public String improve(){
+        setImproved(true);
+        concatDescription("  The mine tracks look brand new.");
+        return "You lay down new mine tracks.";
     }
 }

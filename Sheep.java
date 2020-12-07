@@ -6,6 +6,13 @@ public class Sheep extends Animal{
 
 	public Sheep() {
 		super();
+		currentFear = 0;
+		this.maxFear = 20;
+		ArrayList<String> sheepDialog = new ArrayList<>();
+		sheepDialog.add("bahhhhhhhh");
+		sheepDialog.add("The Sheep stares into your soul blankly");
+		sheepDialog.add("bahhhhhhhh");
+		super.setThingsToSay(sheepDialog);
 	}
 	
 	public Sheep(String name, int currentFear, int maxFear){
@@ -15,6 +22,21 @@ public class Sheep extends Animal{
 		ArrayList<String> sheepDialog = new ArrayList<>();
         sheepDialog.add("bahhhhhhhh");
         sheepDialog.add("The Sheep stares into your soul blankly");
+        sheepDialog.add("bahhhhhhhh");
 		super.setThingsToSay(sheepDialog);
+	}
+
+	public boolean fearResponse(int fear) {
+		currentFear += fear;
+
+		if (currentFear > (maxFear/2)) {
+
+			return false;
+		}
+		if (currentFear > maxFear) {
+			return true;
+		}
+		return false;
+
 	}
 }

@@ -227,5 +227,55 @@ public class EquipmentManager implements IInventory
   public void dropAllEquipment(){
 	clearAllEquipment();
   }
-  
+
+
+  public int getLumberIndex(){
+  	int count = 0;
+  	for(Equipment e : equipment){
+  		if(e instanceof Lumber)
+  			return count;
+  		count++;
+	}
+  	return -1;
+  }
+
+	public int getGoldIndex(){
+		int count = 0;
+		for(Equipment e : equipment){
+			if(e instanceof Gold)
+				return count;
+			count++;
+		}
+		return -1;
+	}
+
+	public int getSeedIndex(){
+		int count = 0;
+		for(Equipment e : equipment){
+			if(e instanceof Seed)
+				return count;
+			count++;
+		}
+		return -1;
+	}
+
+	public int getIronIndex(){
+		int count = 0;
+		for(Equipment e : equipment){
+			if(e instanceof Iron)
+				return count;
+			count++;
+		}
+		return -1;
+	}
+
+	public int getFireworkIndex(){
+		int count = 0;
+		for(Equipment e : equipment){
+			if(e instanceof Firework)
+				return count;
+			count++;
+		}
+		return -1;
+	}
 }

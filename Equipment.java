@@ -62,7 +62,7 @@ public class Equipment
       return (int) (price * (0.30 + durability));
   }
 
-  public void adjustDurability(double d) //changes durability of a object of equipment to a set value
+  public void adjustDurability(double d) //
   {
 
       if (d > -1 && d < 1) {

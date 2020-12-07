@@ -25,7 +25,7 @@ public class Neighbor extends Person {
         neighborWordSalad.add("I guess you'll have to like it or lump it!");
         neighborWordSalad.add("You might need a doctor every once in a while, but every day ... " +
                 "three times a day, you need a farmer!");
-//        super.setDialog(neighborWordSalad);
+       super.setThingsToSay(neighborWordSalad);
     }
 
  // ***********************

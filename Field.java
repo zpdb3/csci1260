@@ -206,7 +206,9 @@ public class Field extends Exterior {
         return description;
     }
 
-    public void improve(boolean improved){
-
+    public String improve() {
+        setImproved(true);
+        concatDescription("  The irrigation system has been upgraded.");
+        return "You upgrade the irrigation system.";
     }
 }
